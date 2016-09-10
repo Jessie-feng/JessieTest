@@ -1,0 +1,11 @@
+mysqld --defaults-file=C:\Program Files\mysql-5.7.14-winx64\my.ini --initialize-insecure
+
+windows查看端口占用
+netstat -aon|findstr "49157"
+
+tasklist|findstr "2720"
+
+taskkill /f /t /im Tencentdl.exe
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root123' WITH GRANT OPTION; 
