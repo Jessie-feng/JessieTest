@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20151229-1956 Build &lt;4.3.2.v20151229-1956></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="周期" id="4209">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">日</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">日</property>
+                </structure>
+                <structure>
+                    <property name="value">周</property>
+                </structure>
+                <structure>
+                    <property name="value">月</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">radio-button</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="报表开始日" id="3021">
+            <property name="valueType">static</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2016-6-24</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">yyyy-MM-dd</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="报表结束日" id="3806">
+            <property name="valueType">static</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.addDay(new Date(),-1)</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">yyyy-MM-dd</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="hawq" id="6278">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://192.168.91.11:5433/credit</property>
+            <property name="odaUser">dev</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">MTIzNDU2</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="daily" id="2942">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date2</text-property>
+                    <text-property name="heading">date2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">register</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">register</text-property>
+                    <text-property name="heading">register</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fake</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">fake</text-property>
+                    <text-property name="heading">fake</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <text-property name="heading">applyinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">openinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <text-property name="heading">openinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">apply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">apply</text-property>
+                    <text-property name="heading">apply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applynew</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <text-property name="heading">applynew</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyold</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <text-property name="heading">applyold</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">antifraudinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <text-property name="heading">antifraudinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">passinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <text-property name="heading">passinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">sendinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <text-property name="heading">sendinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">send</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">send</text-property>
+                    <text-property name="heading">send</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rulepass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <text-property name="heading">rulepass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tongdunpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <text-property name="heading">tongdunpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">comtelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <text-property name="heading">comtelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">pertelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <text-property name="heading">pertelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">open</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">open</text-property>
+                    <text-property name="heading">open</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">报表开始日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">报表结束日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date2</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">register</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">fake</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">applyinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">openinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">apply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">applynew</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">applyold</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">antifraudinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">passinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">sendinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">send</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">rulepass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">tongdunpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">comtelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">pertelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">open</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">hawq</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date2</property>
+                    <property name="nativeName">date2</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">register</property>
+                    <property name="nativeName">register</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">fake</property>
+                    <property name="nativeName">fake</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">applyinregister</property>
+                    <property name="nativeName">applyinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">openinregister</property>
+                    <property name="nativeName">openinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">apply</property>
+                    <property name="nativeName">apply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">applynew</property>
+                    <property name="nativeName">applynew</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">applyold</property>
+                    <property name="nativeName">applyold</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">antifraudinapply</property>
+                    <property name="nativeName">antifraudinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">passinapply</property>
+                    <property name="nativeName">passinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">sendinapply</property>
+                    <property name="nativeName">sendinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">send</property>
+                    <property name="nativeName">send</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">rulepass</property>
+                    <property name="nativeName">rulepass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">tongdunpass</property>
+                    <property name="nativeName">tongdunpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">comtelpass</property>
+                    <property name="nativeName">comtelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">pertelpass</property>
+                    <property name="nativeName">pertelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">open</property>
+                    <property name="nativeName">open</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select
+  date1 as date2,
+  register,
+  fake,
+  applyinregister,
+  openinregister,
+  apply,
+  applynew,
+  applyold,
+  antifraudinapply,
+  passinapply,
+  sendinapply,
+  send,
+  rulepass,
+  tongdunpass,
+  comtelpass,
+  pertelpass,
+  open
+from reports.steps
+where date(snapDate) = (select max(snapdate) from reports.steps) and 
+date(date1) between date(?) and date(?)
+order by 1 desc]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>date</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>date</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>channel</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>channel</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>channel</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>clickNum</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>clickNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>clickNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>activeNum</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>activeNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>activeNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="month" id="4416">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date2</text-property>
+                    <text-property name="heading">date2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">register</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">register</text-property>
+                    <text-property name="heading">register</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fake</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">fake</text-property>
+                    <text-property name="heading">fake</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <text-property name="heading">applyinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">openinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <text-property name="heading">openinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">apply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">apply</text-property>
+                    <text-property name="heading">apply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applynew</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <text-property name="heading">applynew</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyold</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <text-property name="heading">applyold</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">antifraudinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <text-property name="heading">antifraudinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">passinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <text-property name="heading">passinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">sendinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <text-property name="heading">sendinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">send</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">send</text-property>
+                    <text-property name="heading">send</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rulepass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <text-property name="heading">rulepass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tongdunpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <text-property name="heading">tongdunpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">comtelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <text-property name="heading">comtelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">pertelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <text-property name="heading">pertelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">open</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">open</text-property>
+                    <text-property name="heading">open</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">报表开始日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">报表结束日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">register</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">fake</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">applyinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">openinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">apply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">applynew</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">applyold</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">antifraudinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">passinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">sendinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">send</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">rulepass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">tongdunpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">comtelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">pertelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">open</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">hawq</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date2</property>
+                    <property name="nativeName">date2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">register</property>
+                    <property name="nativeName">register</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">fake</property>
+                    <property name="nativeName">fake</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">applyinregister</property>
+                    <property name="nativeName">applyinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">openinregister</property>
+                    <property name="nativeName">openinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">apply</property>
+                    <property name="nativeName">apply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">applynew</property>
+                    <property name="nativeName">applynew</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">applyold</property>
+                    <property name="nativeName">applyold</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">antifraudinapply</property>
+                    <property name="nativeName">antifraudinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">passinapply</property>
+                    <property name="nativeName">passinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">sendinapply</property>
+                    <property name="nativeName">sendinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">send</property>
+                    <property name="nativeName">send</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">rulepass</property>
+                    <property name="nativeName">rulepass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">tongdunpass</property>
+                    <property name="nativeName">tongdunpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">comtelpass</property>
+                    <property name="nativeName">comtelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">pertelpass</property>
+                    <property name="nativeName">pertelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">open</property>
+                    <property name="nativeName">open</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+to_char(date(date1),'yyyy-MM') as date2,
+sum(register) as register,
+sum(fake) as fake,
+sum(applyinregister) as applyinregister,
+sum(openinregister) as openinregister,
+sum(apply) as apply,
+sum(applynew) as applynew,
+sum(applyold) as applyold,
+sum(antifraudinapply) as antifraudinapply,
+sum(passinapply) as passinapply,
+sum(sendinapply) as sendinapply,
+sum(send) as send,
+sum(rulepass) as rulepass,
+sum(tongdunpass) as tongdunpass,
+sum(comtelpass) as comtelpass,
+sum(pertelpass) as pertelpass,
+sum(open) as open
+from reports.steps
+where date(snapDate) = (select max(snapdate) from reports.steps)
+and date(date1) between date(?) and date(?)
+group by 
+to_char(date(date1),'yyyy-MM')
+order by 1 desc]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>date</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>date</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>channel</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>channel</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>channel</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>clickNum</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>clickNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>clickNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>activeNum</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>activeNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>activeNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="week" id="4210">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date2</text-property>
+                    <text-property name="heading">date2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">register</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">register</text-property>
+                    <text-property name="heading">register</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fake</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">fake</text-property>
+                    <text-property name="heading">fake</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <text-property name="heading">applyinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">openinregister</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <text-property name="heading">openinregister</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">apply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">apply</text-property>
+                    <text-property name="heading">apply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applynew</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <text-property name="heading">applynew</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">applyold</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <text-property name="heading">applyold</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">antifraudinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <text-property name="heading">antifraudinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">passinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <text-property name="heading">passinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">sendinapply</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <text-property name="heading">sendinapply</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">send</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">send</text-property>
+                    <text-property name="heading">send</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rulepass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <text-property name="heading">rulepass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tongdunpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <text-property name="heading">tongdunpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">comtelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <text-property name="heading">comtelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">pertelpass</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <text-property name="heading">pertelpass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">open</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">open</text-property>
+                    <text-property name="heading">open</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">报表开始日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">报表结束日</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date2</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">register</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">fake</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">applyinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">openinregister</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">apply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">applynew</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">applyold</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">antifraudinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">passinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">sendinapply</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">send</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">rulepass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">tongdunpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">comtelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">pertelpass</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">open</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">hawq</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date2</property>
+                    <property name="nativeName">date2</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">register</property>
+                    <property name="nativeName">register</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">fake</property>
+                    <property name="nativeName">fake</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">applyinregister</property>
+                    <property name="nativeName">applyinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">openinregister</property>
+                    <property name="nativeName">openinregister</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">apply</property>
+                    <property name="nativeName">apply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">applynew</property>
+                    <property name="nativeName">applynew</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">applyold</property>
+                    <property name="nativeName">applyold</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">antifraudinapply</property>
+                    <property name="nativeName">antifraudinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">passinapply</property>
+                    <property name="nativeName">passinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">sendinapply</property>
+                    <property name="nativeName">sendinapply</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">send</property>
+                    <property name="nativeName">send</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">rulepass</property>
+                    <property name="nativeName">rulepass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">tongdunpass</property>
+                    <property name="nativeName">tongdunpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">comtelpass</property>
+                    <property name="nativeName">comtelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">pertelpass</property>
+                    <property name="nativeName">pertelpass</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">open</property>
+                    <property name="nativeName">open</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+(date(date1) - (date(date1)-date('2016-6-6'))%7) as date2,
+sum(register) as register,
+sum(fake) as fake,
+sum(applyinregister) as applyinregister,
+sum(openinregister) as openinregister,
+sum(apply) as apply,
+sum(applynew) as applynew,
+sum(applyold) as applyold,
+sum(antifraudinapply) as antifraudinapply,
+sum(passinapply) as passinapply,
+sum(sendinapply) as sendinapply,
+sum(send) as send,
+sum(rulepass) as rulepass,
+sum(tongdunpass) as tongdunpass,
+sum(comtelpass) as comtelpass,
+sum(pertelpass) as pertelpass,
+sum(open) as open
+from reports.steps
+where date(snapDate) = (select max(snapdate) from reports.steps)
+and date(date1) between ? and ?
+group by (date(date1) - (date(date1)-date('2016-6-6'))%7)
+order by 1 desc]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>date</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>date</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>channel</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>channel</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>channel</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>clickNum</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>clickNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>clickNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>activeNum</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>activeNum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>activeNum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="showHeaderOnFirst">false</property>
+            <property name="showFooterOnLast">false</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="3512">
+            <property name="backgroundColor">#FFFF80</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script src="./resource/jctest/jquery-3.1.1.js"></script>
+<script src="http://localhost:8080/jessiejs/pc/js/htmlitem.js"></script>]]></text-property>
+        </text>
+        <extended-item extensionName="HtmlItem" name="ds_day" id="6279">
+            <property name="display">none</property>
+            <property name="height">0.6041666666666666in</property>
+            <property name="width">1.1770833333333333in</property>
+            <property name="dataSet">daily</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">date2</property>
+                    <text-property name="displayName">date2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date2"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">register</property>
+                    <text-property name="displayName">register</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["register"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">fake</property>
+                    <text-property name="displayName">fake</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["fake"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyinregister</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">openinregister</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["openinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">apply</property>
+                    <text-property name="displayName">apply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["apply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applynew</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applynew"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyold</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyold"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">antifraudinapply</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["antifraudinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">passinapply</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["passinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sendinapply</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sendinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">send</property>
+                    <text-property name="displayName">send</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["send"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rulepass</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rulepass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tongdunpass</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tongdunpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">comtelpass</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["comtelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">pertelpass</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["pertelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">open</property>
+                    <text-property name="displayName">open</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["open"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <extended-item extensionName="HtmlItem" name="ds_week" id="6281">
+            <property name="display">none</property>
+            <property name="height">0.6041666666666666in</property>
+            <property name="width">1.1770833333333333in</property>
+            <property name="dataSet">week</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">date2</property>
+                    <text-property name="displayName">date2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date2"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">register</property>
+                    <text-property name="displayName">register</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["register"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">fake</property>
+                    <text-property name="displayName">fake</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["fake"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyinregister</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">openinregister</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["openinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">apply</property>
+                    <text-property name="displayName">apply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["apply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applynew</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applynew"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyold</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyold"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">antifraudinapply</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["antifraudinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">passinapply</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["passinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sendinapply</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sendinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">send</property>
+                    <text-property name="displayName">send</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["send"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rulepass</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rulepass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tongdunpass</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tongdunpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">comtelpass</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["comtelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">pertelpass</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["pertelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">open</property>
+                    <text-property name="displayName">open</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["open"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <extended-item extensionName="HtmlItem" name="ds_month" id="6280">
+            <property name="display">none</property>
+            <property name="height">0.6041666666666666in</property>
+            <property name="width">1.1770833333333333in</property>
+            <property name="dataSet">month</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">date2</property>
+                    <text-property name="displayName">date2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date2"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">register</property>
+                    <text-property name="displayName">register</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["register"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">fake</property>
+                    <text-property name="displayName">fake</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["fake"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyinregister</property>
+                    <text-property name="displayName">applyinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">openinregister</property>
+                    <text-property name="displayName">openinregister</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["openinregister"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">apply</property>
+                    <text-property name="displayName">apply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["apply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applynew</property>
+                    <text-property name="displayName">applynew</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applynew"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">applyold</property>
+                    <text-property name="displayName">applyold</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["applyold"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">antifraudinapply</property>
+                    <text-property name="displayName">antifraudinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["antifraudinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">passinapply</property>
+                    <text-property name="displayName">passinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["passinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sendinapply</property>
+                    <text-property name="displayName">sendinapply</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sendinapply"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">send</property>
+                    <text-property name="displayName">send</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["send"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rulepass</property>
+                    <text-property name="displayName">rulepass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rulepass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tongdunpass</property>
+                    <text-property name="displayName">tongdunpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tongdunpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">comtelpass</property>
+                    <text-property name="displayName">comtelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["comtelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">pertelpass</property>
+                    <text-property name="displayName">pertelpass</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["pertelpass"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">open</property>
+                    <text-property name="displayName">open</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["open"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <text id="2779">
+            <property name="marginTop">0pt</property>
+            <property name="pageBreakAfter">auto</property>
+            <property name="pageBreakBefore">auto</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["显示什么"].value != '贷款人数'</expression>
+                </structure>
+            </list-property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<div id="table1div"  style="" ></div>]]></text-property>
+        </text>
+        <text id="3519">
+            <property name="fontSize">10pt</property>
+            <property name="marginLeft">0pt</property>
+            <property name="display">none</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>  
+	(function($){
+				var el;		
+			/*	var p_period = '<VALUE-OF>params["周期"].value</VALUE-OF>';
+				if (p_period === "日"){ el = document.getElementById("ds_day");}
+				if (p_period === "周"){ el = document.getElementById("ds_week");}
+				if (p_period === "月"){ el = document.getElementById("ds_month");}  */
+				
+				el = document.getElementById("ds_day");
+				var rs = el.__instance.getResultSet(); 
+				var values = rs.data.values;
+				var rows =  values.length;
+				var columns = values[0].length;
+				var date2Index = rs.columnIndex("date2");
+				var registerIndex = rs.columnIndex("register");
+				var fakeIndex = rs.columnIndex("fake");
+				var applyinregisterIndex = rs.columnIndex("applyinregister");
+				var openinregisterIndex = rs.columnIndex("openinregister");
+				var applyIndex = rs.columnIndex("apply");
+				var applynewIndex = rs.columnIndex("applynew");
+				var applyoldIndex = rs.columnIndex("applyold");
+				var antifraudinapplyIndex = rs.columnIndex("antifraudinapply");
+				var passinapplyIndex = rs.columnIndex("passinapply");
+				var sendinapplyIndex = rs.columnIndex("sendinapply");		
+				var sendIndex = rs.columnIndex("send");
+				var rulepassIndex = rs.columnIndex("rulepass");
+				var tongdunpassIndex = rs.columnIndex("tongdunpass");
+				var comtelpassIndex = rs.columnIndex("comtelpass");
+				var pertelpassIndex = rs.columnIndex("pertelpass");
+				var openIndex = rs.columnIndex("open");		
+						
+				
+				var t1=$("<table class='table1class'  id='table1'></table>"); 
+				var thead = $('<thead></thead>');				
+				var tr = $('<tr></tr>');				
+				$('<th>' + '注册日期' + '</th>').appendTo(tr);
+				$('<th>' + '当期注册数' + '</th>').appendTo(tr);
+				$('<th>' + '其中刷量数' + '</th>').appendTo(tr);
+				$('<th>' + '其中实际注册数' + '</th>').appendTo(tr);
+				$('<th>' + '其中申请数' + '</th>').appendTo(tr);
+				$('<th>' + '其中开户数' + '</th>').appendTo(tr);
+				$('<th>' + '注册申请转化率' + '</th>').appendTo(tr);
+				$('<th>' + '注册开户转化率' + '</th>').appendTo(tr);
+				
+				$('<th>' + '当期申请数' + '</th>').appendTo(tr);
+				$('<th>' + '首次申请数' + '</th>').appendTo(tr);
+				$('<th>' + '重复申请数' + '</th>').appendTo(tr);
+				$('<th>' + '通过反欺诈' + '</th>').appendTo(tr);
+				$('<th>' + '审核通过数' + '</th>').appendTo(tr);
+				$('<th>' + '其中送件数' + '</th>').appendTo(tr);				
+				$('<th>' + '申请送件转化率' + '</th>').appendTo(tr);
+				
+				$('<th>' + '当期送件数' + '</th>').appendTo(tr);
+				$('<th>' + '规则通过数' + '</th>').appendTo(tr);
+				$('<th>' + '二次风控通过数' + '</th>').appendTo(tr);
+				$('<th>' + '单电通过数' + '</th>').appendTo(tr);
+				$('<th>' + '个电通过数' + '</th>').appendTo(tr);
+				
+				$('<th>' + '当期开户' + '</th>').appendTo(tr);
+				$('<th>' + '送件开户率' + '</th>').appendTo(tr);
+				$('<th>' + '兴业开户率' + '</th>').appendTo(tr);
+				$('<th>' + '行健开户率' + '</th>').appendTo(tr);
+				
+				tr.appendTo(thead);
+				thead.appendTo(t1);	
+					
+				var tbody = $('<tbody></tbody>');	 
+					
+				for( var i=0; i < rows; i++)
+				{
+					var e = values[i];
+					var date2 = e[date2Index];
+					var register = e[registerIndex];
+					var fake = e[fakeIndex]; 
+					var applyinregister = e[applyinregisterIndex]; 
+					var openinregister = e[openinregisterIndex]; 
+					var apply = e[applyIndex]; 
+					var applynew = e[applynewIndex];
+					var applyold = e[applyoldIndex];
+					var antifraudinapply = e[antifraudinapplyIndex];
+					var passinapply = e[passinapplyIndex];
+					var sendinapply = e[sendinapplyIndex];		
+					var send = e[sendIndex];
+					var rulepass = e[rulepassIndex];
+					var tongdunpass = e[tongdunpassIndex];
+					var comtelpass = e[comtelpassIndex];
+					var pertelpass = e[pertelpassIndex];
+					var open1 = e[openIndex];
+					
+					var tr = $("<tr></tr>");
+					
+					$("<td>" + date2 + "</td>").appendTo(tr);
+					$("<td>" + register + "</td>").appendTo(tr);
+					$("<td>" + fake + "</td>").appendTo(tr);
+					$("<td>" + (register-fake) + "</td>").appendTo(tr);
+					$("<td>" + applyinregister + "</td>").appendTo(tr);
+					$("<td>" + openinregister + "</td>").appendTo(tr);
+					$("<td>" + openinregister + "</td>").appendTo(tr);					
+					$('<th>' + applyinregister/(register-fake) + '</th>').appendTo(tr);
+				    $('<th>' + openinregister/(register-fake) + '</th>').appendTo(tr);
+					
+					
+					$("<td>"+apply+"</td>").appendTo(tr);
+					$("<td>"+applynew+"</td>").appendTo(tr);
+					$("<td>"+applyold+"</td>").appendTo(tr);
+					$("<td>"+antifraudinapply+"</td>").appendTo(tr);
+					$("<td>"+passinapply+"</td>").appendTo(tr);
+					$("<td>"+sendinapply+"</td>").appendTo(tr);
+					$('<th>' + sendinapply/apply + '</th>').appendTo(tr);
+					
+					$("<td>"+send+"</td>").appendTo(tr);
+					$("<td>"+rulepass+"</td>").appendTo(tr);
+					$("<td>"+tongdunpass+"</td>").appendTo(tr);
+					$("<td>"+comtelpass+"</td>").appendTo(tr);
+					$("<td>"+pertelpass+"</td>").appendTo(tr);
+					$("<td>"+open1+"</td>").appendTo(tr);					
+					$("<td>"+open1/send+"</td>").appendTo(tr);
+					$("<td>"+rulepass/send+"</td>").appendTo(tr);
+					$("<td>"+pertelpass/rulepass+"</td>").appendTo(tr);					
+					
+					tr.appendTo(tbody);
+				 }
+				 tbody.appendTo(t1);
+				 t1.appendTo($('#table1div'));
+	})(jQuery);
+
+</script>
+
+
+
+
+]]></text-property>
+        </text>
+    </body>
+</report>

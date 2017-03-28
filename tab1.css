@@ -1,0 +1,31 @@
+
+.hover
+{
+  background-color: #cccc00;
+}
+
+.table1class 
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
+ }
+ 
+ .table1class th, .table1class td
+ {
+    border: 1px solid #b5d6e6;
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    height: 20px;
+ }
+ 
+ .table1class th
+ {
+    background-color: Gray;	
+ }  
+
+

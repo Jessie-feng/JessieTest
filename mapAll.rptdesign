@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20151229-1956 Build &lt;4.3.2.v20151229-1956></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="mysql" id="215">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://192.168.91.11:3306/reports</property>
+            <property name="odaUser">report</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">UmVwI3ExOUI=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="3513">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">custId</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">custId</text-property>
+                    <text-property name="heading">custId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lng</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">lng</text-property>
+                    <text-property name="heading">lng</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lat</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">lat</text-property>
+                    <text-property name="heading">lat</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">provinceName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">provinceName</text-property>
+                    <text-property name="heading">provinceName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cityName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cityName</text-property>
+                    <text-property name="heading">cityName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">countyName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">countyName</text-property>
+                    <text-property name="heading">countyName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">address</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">address</text-property>
+                    <text-property name="heading">address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">giveMoneyTime</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">giveMoneyTime</text-property>
+                    <text-property name="heading">giveMoneyTime</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">borrowAmount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">borrowAmount</text-property>
+                    <text-property name="heading">borrowAmount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">deductMoneyTime</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">deductMoneyTime</text-property>
+                    <text-property name="heading">deductMoneyTime</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">principal</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">principal</text-property>
+                    <text-property name="heading">principal</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">custId</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">lng</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">lat</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">provinceName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">cityName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">countyName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">giveMoneyTime</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">borrowAmount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">deductMoneyTime</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">principal</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">custId</property>
+                    <property name="nativeName">custId</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">lng</property>
+                    <property name="nativeName">lng</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">lat</property>
+                    <property name="nativeName">lat</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">provinceName</property>
+                    <property name="nativeName">provinceName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">cityName</property>
+                    <property name="nativeName">cityName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">countyName</property>
+                    <property name="nativeName">countyName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">address</property>
+                    <property name="nativeName">address</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">giveMoneyTime</property>
+                    <property name="nativeName">giveMoneyTime</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">borrowAmount</property>
+                    <property name="nativeName">borrowAmount</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">deductMoneyTime</property>
+                    <property name="nativeName">deductMoneyTime</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">principal</property>
+                    <property name="nativeName">principal</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+t1.custId as custId,
+t1.lng as lng, 
+t1.lat as lat, 
+t1.provinceName as provinceName, 
+t1.cityName as cityName, 
+t1.countyName as countyName, 
+t1.address as address,
+t2.giveMoneyTime as giveMoneyTime, 
+t2.borrowAmount as borrowAmount,
+t3.deductMoneyTime as deductMoneyTime, 
+t3.principal as principal
+from loan.custOpenAccPos t1
+inner join `loan`.`loanBorrow` t2 on t1.custId = t2.custId and t2.status>=2
+left join `loan`.`loanRepayment` t3 on t1.custId = t3.custId and t3.status>=2
+where t1.custId not in(select id from `reports`.`cust_fake`) 
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>custId</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>custId</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>custId</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lng</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lng</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lng</design:label>
+            <design:formattingHints>
+              <design:displaySize>17</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lat</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lat</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lat</design:label>
+            <design:formattingHints>
+              <design:displaySize>17</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>provinceName</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>provinceName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>provinceName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cityName</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cityName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cityName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>countyName</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>countyName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>countyName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>address</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>address</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>address</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>giveMoneyTime</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>giveMoneyTime</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>giveMoneyTime</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>borrowAmount</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>borrowAmount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>borrowAmount</design:label>
+            <design:formattingHints>
+              <design:displaySize>12</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>deductMoneyTime</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>deductMoneyTime</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>deductMoneyTime</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>principal</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>principal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>principal</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set1" id="3514">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">custId</property>
+                    <text-property name="displayName">custId</text-property>
+                    <text-property name="heading">custId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lng</property>
+                    <text-property name="displayName">lng</text-property>
+                    <text-property name="heading">lng</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lat</property>
+                    <text-property name="displayName">lat</text-property>
+                    <text-property name="heading">lat</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">provinceName</property>
+                    <text-property name="displayName">provinceName</text-property>
+                    <text-property name="heading">provinceName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cityName</property>
+                    <text-property name="displayName">cityName</text-property>
+                    <text-property name="heading">cityName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">countyName</property>
+                    <text-property name="displayName">countyName</text-property>
+                    <text-property name="heading">countyName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">address</property>
+                    <text-property name="displayName">address</text-property>
+                    <text-property name="heading">address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">borrowAmount</property>
+                    <text-property name="displayName">borrowAmount</text-property>
+                    <text-property name="heading">borrowAmount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">principal</property>
+                    <text-property name="displayName">principal</text-property>
+                    <text-property name="heading">principal</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">custId</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">lng</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">lat</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">provinceName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">cityName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">countyName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">borrowAmount</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">principal</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">custId</property>
+                    <property name="nativeName">custId</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">lng</property>
+                    <property name="nativeName">lng</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">lat</property>
+                    <property name="nativeName">lat</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">provinceName</property>
+                    <property name="nativeName">provinceName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">cityName</property>
+                    <property name="nativeName">cityName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">countyName</property>
+                    <property name="nativeName">countyName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">address</property>
+                    <property name="nativeName">address</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">borrowAmount</property>
+                    <property name="nativeName">borrowAmount</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">principal</property>
+                    <property name="nativeName">principal</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+t1.custId as custId,
+t1.lng as lng, 
+t1.lat as lat, 
+t1.provinceName as provinceName, 
+t1.cityName as cityName, 
+t1.countyName as countyName, 
+t1.address as address,
+sum(t2.borrowAmount) as borrowAmount,
+sum(t3.principal) as principal
+from loan.custOpenAccPos t1
+inner join `loan`.`loanBorrow` t2 on t1.custId = t2.custId and t2.status>=2
+left join `loan`.`loanRepayment` t3 on t1.custId = t3.custId and t3.status>=2
+where t1.custId not in(select id from `reports`.`cust_fake`)
+group by t1.custId]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>custId</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>custId</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>custId</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lng</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lng</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lng</design:label>
+            <design:formattingHints>
+              <design:displaySize>17</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lat</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lat</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lat</design:label>
+            <design:formattingHints>
+              <design:displaySize>17</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>provinceName</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>provinceName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>provinceName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cityName</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cityName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cityName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>countyName</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>countyName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>countyName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>address</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>address</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>address</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>borrowAmount</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>32</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>borrowAmount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>borrowAmount</design:label>
+            <design:formattingHints>
+              <design:displaySize>34</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>principal</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>principal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>principal</design:label>
+            <design:formattingHints>
+              <design:displaySize>32</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2"/>
+    </page-setup>
+    <body>
+        <text id="3512">
+            <property name="backgroundColor">#FFFF80</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<!--[if lt IE 9]>
+      <script src="http://www.800os.cn/pc/js/lib/html5shiv.min.js"></script>
+      <script src="http://www.800os.cn/pc/js/lib/respond.min.js"></script>
+<![endif]-->
+<script src="http://www.800os.cn/pc/js/require.js"></script>
+<script src="http://www.800os.cn/pc/js/htmlitem.js"></script>
+<script src="http://www.800os.cn/pc/js/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=kCkWjmxOA9CsQsoq2bpV4U020THiyrNI"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+
+<script>
+;(function(){
+	require.config({
+		baseUrl: "http://www.800os.cn/pc/js/",
+		paths: {
+			"jquery": "lib/jquery/jquery.min",
+			"cssPath": "../css"
+		},
+		waitSeconds: 15,
+		map: {
+		    '*': {
+		         'css': 'lib/css.min'
+		     }
+		}
+	});
+})();
+</script>]]></text-property>
+        </text>
+        <extended-item extensionName="HtmlItem" name="map1Data" id="3515">
+            <property name="display">none</property>
+            <property name="height">0.9270833333333334in</property>
+            <property name="width">1.71875in</property>
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">custId</property>
+                    <text-property name="displayName">custId</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["custId"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">lng</property>
+                    <text-property name="displayName">lng</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lng"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">lat</property>
+                    <text-property name="displayName">lat</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lat"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <label id="3520">
+            <property name="fontFamily">"黑体"</property>
+            <property name="fontSize">14pt</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">总量贷款笔数报表</text-property>
+        </label>
+        <text id="2779">
+            <property name="marginTop">0pt</property>
+            <property name="pageBreakAfter">auto</property>
+            <property name="pageBreakBefore">auto</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<div id="map1" style="height:9.0in;></div>]]></text-property>
+        </text>
+        <text id="2780">
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>  
+var map = new BMap.Map("map1");          // 创建地图实例
+
+    var point = new BMap.Point(121.4553350000, 31.2301830000);
+    map.centerAndZoom(point, 7);             // 初始化地图，设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(); // 允许滚轮缩放
+
+	var el = document.getElementById("map1Data");
+	var rs = el.__instance.getResultSet(); 
+	var custIdIndex = rs.columnIndex("custId");
+	var lngIndex = rs.columnIndex("lng");
+	var latIndex = rs.columnIndex("lat");
+	var values = rs.data.values;
+	var lng;
+	var lat;
+	var count;
+	var points=[]; 
+	for(var i = 0, len = values.length; i < len; i++) {
+		var e = values[i];         
+		points.push({
+			lng: e[lngIndex],
+			lat: e[latIndex],
+			count:1
+		});
+	};
+
+    /*
+	var points =[
+    {"lng":"","lat":"","count":50},
+    {"lng":116.423332,"lat":39.916532,"count":51},
+    {"lng":116.419787,"lat":39.930658,"count":15},
+    {"lng":116.418455,"lat":39.920921,"count":40},
+    {"lng":116.418843,"lat":39.915516,"count":100},
+    {"lng":116.42546,"lat":39.918503,"count":6},
+    {"lng":116.423289,"lat":39.919989,"count":18},
+    {"lng":116.418162,"lat":39.915051,"count":80},
+    {"lng":116.422039,"lat":39.91782,"count":11},
+    {"lng":116.41387,"lat":39.917253,"count":7},
+    {"lng":116.41773,"lat":39.919426,"count":42},
+    {"lng":116.421107,"lat":39.916445,"count":4},
+    {"lng":116.417521,"lat":39.917943,"count":27},
+    {"lng":116.419812,"lat":39.920836,"count":23},
+    {"lng":116.420682,"lat":39.91463,"count":60},
+    {"lng":116.415424,"lat":39.924675,"count":8},
+    {"lng":116.419242,"lat":39.914509,"count":15},
+    {"lng":116.422766,"lat":39.921408,"count":25},
+    {"lng":116.421674,"lat":39.924396,"count":21},
+    {"lng":116.427268,"lat":39.92267,"count":1},
+    {"lng":116.417721,"lat":39.920034,"count":51},
+    {"lng":116.412456,"lat":39.92667,"count":7},
+    {"lng":116.420432,"lat":39.919114,"count":11},
+    {"lng":116.425013,"lat":39.921611,"count":35},
+    {"lng":116.418733,"lat":39.931037,"count":22},
+    {"lng":116.419336,"lat":39.931134,"count":4},
+    {"lng":116.413557,"lat":39.923254,"count":5},
+    {"lng":116.418367,"lat":39.92943,"count":3},
+    {"lng":116.424312,"lat":39.919621,"count":100},
+    {"lng":116.423874,"lat":39.919447,"count":87},
+    {"lng":116.424225,"lat":39.923091,"count":32},
+    {"lng":116.417801,"lat":39.921854,"count":44},
+    {"lng":116.417129,"lat":39.928227,"count":21},
+    {"lng":116.426426,"lat":39.922286,"count":80},
+    {"lng":116.421597,"lat":39.91948,"count":32},
+    {"lng":116.423895,"lat":39.920787,"count":26},
+    {"lng":116.423563,"lat":39.921197,"count":17},
+    {"lng":116.417982,"lat":39.922547,"count":17},
+    {"lng":116.426126,"lat":39.921938,"count":25},
+    {"lng":116.42326,"lat":39.915782,"count":100},
+    {"lng":116.419239,"lat":39.916759,"count":39},
+    {"lng":116.417185,"lat":39.929123,"count":11},
+    {"lng":116.417237,"lat":39.927518,"count":9},
+    {"lng":116.417784,"lat":39.915754,"count":47},
+    {"lng":116.420193,"lat":39.917061,"count":52},
+    {"lng":116.422735,"lat":39.915619,"count":100},
+    {"lng":116.418495,"lat":39.915958,"count":46},
+    {"lng":116.416292,"lat":39.931166,"count":9},
+    {"lng":116.419916,"lat":39.924055,"count":8},
+    {"lng":116.42189,"lat":39.921308,"count":11},
+    {"lng":116.413765,"lat":39.929376,"count":3},
+    {"lng":116.418232,"lat":39.920348,"count":50},
+    {"lng":116.417554,"lat":39.930511,"count":15},
+    {"lng":116.418568,"lat":39.918161,"count":23},
+    {"lng":116.413461,"lat":39.926306,"count":3},
+    {"lng":116.42232,"lat":39.92161,"count":13},
+    {"lng":116.4174,"lat":39.928616,"count":6},
+    {"lng":116.424679,"lat":39.915499,"count":21},
+    {"lng":116.42171,"lat":39.915738,"count":29},
+    {"lng":116.417836,"lat":39.916998,"count":99},
+    {"lng":116.420755,"lat":39.928001,"count":10},
+    {"lng":116.414077,"lat":39.930655,"count":14},
+    {"lng":116.426092,"lat":39.922995,"count":16},
+    {"lng":116.41535,"lat":39.931054,"count":15},
+    {"lng":116.413022,"lat":39.921895,"count":13},
+    {"lng":116.415551,"lat":39.913373,"count":17},
+    {"lng":116.421191,"lat":39.926572,"count":1},
+    {"lng":116.419612,"lat":39.917119,"count":9},
+    {"lng":116.418237,"lat":39.921337,"count":54},
+    {"lng":116.423776,"lat":39.921919,"count":26},
+    {"lng":116.417694,"lat":39.92536,"count":17},
+    {"lng":116.415377,"lat":39.914137,"count":19},
+    {"lng":116.417434,"lat":39.914394,"count":43},
+    {"lng":116.42588,"lat":39.922622,"count":27},
+    {"lng":116.418345,"lat":39.919467,"count":8},
+    {"lng":116.426883,"lat":39.917171,"count":3},
+    {"lng":116.423877,"lat":39.916659,"count":34},
+    {"lng":116.415712,"lat":39.915613,"count":14},
+    {"lng":116.419869,"lat":39.931416,"count":12},
+    {"lng":116.416956,"lat":39.925377,"count":11},
+    {"lng":116.42066,"lat":39.925017,"count":38},
+    {"lng":116.416244,"lat":39.920215,"count":91},
+    {"lng":116.41929,"lat":39.915908,"count":54},
+    {"lng":116.422116,"lat":39.919658,"count":21},
+    {"lng":116.4183,"lat":39.925015,"count":15},
+    {"lng":116.421969,"lat":39.913527,"count":3},
+    {"lng":116.422936,"lat":39.921854,"count":24},
+    {"lng":116.41905,"lat":39.929217,"count":12},
+    {"lng":116.424579,"lat":39.914987,"count":57},
+    {"lng":116.42076,"lat":39.915251,"count":70},
+    {"lng":116.425867,"lat":39.918989,"count":8}];
+    */
+    if(!isSupportCanvas()){
+    	alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+    }
+	//详细的参数,可以查看heatmap.js的文档 https://github.com/pa7/heatmap.js/blob/master/README.md
+	//参数说明如下:
+	/* visible 热力图是否显示,默认为true
+     * opacity 热力的透明度,1-100
+     * radius 势力图的每个点的半径大小
+     * gradient  {JSON} 热力图的渐变区间 . gradient如下所示
+     *	{
+			.2:'rgb(0, 255, 255)',
+			.5:'rgb(0, 110, 255)',
+			.8:'rgb(100, 0, 255)'
+		}
+		其中 key 表示插值的位置, 0~1.
+		    value 为颜色值.
+     */
+	heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+	map.addOverlay(heatmapOverlay);
+	heatmapOverlay.setDataSet({data:points,max:100});
+	//是否显示热力图
+    function openHeatmap(){
+        heatmapOverlay.show();
+    }
+	function closeHeatmap(){
+        heatmapOverlay.hide();
+    }
+	openHeatmap();
+    function setGradient(){
+     	/*格式如下所示:
+		{
+	  		0:'rgb(102, 255, 0)',
+	 	 	.5:'rgb(255, 170, 0)',
+		  	1:'rgb(255, 0, 0)'
+		}*/
+     	var gradient = {};
+     	var colors = document.querySelectorAll("input[type='color']");
+     	colors = [].slice.call(colors,0);
+     	colors.forEach(function(ele){
+			gradient[ele.getAttribute("data-key")] = ele.value;
+     	});
+        heatmapOverlay.setOptions({"gradient":gradient});
+    }
+	//判断浏览区是否支持canvas
+    function isSupportCanvas(){
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext &amp;&amp; elem.getContext('2d'));
+    }
+	
+</script>]]></text-property>
+        </text>
+    </body>
+</report>
