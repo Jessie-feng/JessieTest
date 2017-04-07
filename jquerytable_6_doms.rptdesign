@@ -984,7 +984,7 @@ var link1=document.createElement("link");
                 </structure>
             </list-property>
             <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<div id="table1div"  style="" ></div>]]></text-property>
+            <text-property name="content"><![CDATA[<div id="table1div" ></div>]]></text-property>
         </text>
         <text id="3519">
             <property name="fontSize">10pt</property>
@@ -992,8 +992,9 @@ var link1=document.createElement("link");
             <property name="display">none</property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script>  
+(function($){
 	var rowCount = 100;
-	var colCount = 6;
+	var colCount = 80;
 	 
 	var t1=$("<table class='table1class'  id='table1'></table>"); 
 	var thead = $('<thead></thead>');
@@ -1020,6 +1021,7 @@ var link1=document.createElement("link");
 	 tbody.appendTo(t1);
 	 t1.appendTo($('#table1div'));
 
+})(jQuery);
 </script>]]></text-property>
         </text>
         <text id="3592">
@@ -1028,13 +1030,14 @@ var link1=document.createElement("link");
             <property name="display">none</property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script type="text/javascript">
+(function($){
 	$(document).ready(function(){
-		$("#table1 tr:gt(0)").hover(
+		$("#table1 tr:lt(3)").hover(
 			function(){$(this).addClass("hover")},
 			function () { $(this).removeClass("hover") }
 		);
 	});	
-	
+})(jQuery);
 </script>]]></text-property>
         </text>
     </body>

@@ -9,7 +9,7 @@
     <list-property name="cssStyleSheets">
         <structure>
             <property name="useExternalCss">true</property>
-            <property name="externalCssURI">report_css/tab1.css</property>
+            <property name="externalCssURI">resource/jctest/tab1.css</property>
         </structure>
     </list-property>
     <data-sources>
@@ -960,9 +960,6 @@ group by t1.custId]]></xml-property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script src="http://192.168.95.8:8081/kdsp/webcontent/report_css/jquery-3.1.1.js"></script>]]></text-property>
         </text>
-        <label id="3593">
-            <text-property name="text">hhihih</text-property>
-        </label>
         <text id="2779">
             <property name="marginTop">0pt</property>
             <property name="pageBreakAfter">auto</property>

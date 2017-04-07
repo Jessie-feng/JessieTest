@@ -9,10 +9,6 @@
     <list-property name="cssStyleSheets">
         <structure>
             <property name="useExternalCss">true</property>
-            <property name="externalCssURI">resource/jctest/tab1.css</property>
-        </structure>
-        <structure>
-            <property name="useExternalCss">true</property>
             <property name="externalCssURI">resource/jctest/jquery.dataTables.css</property>
         </structure>
         <structure>
@@ -1032,14 +1028,15 @@ group by t1.custId]]></xml-property>
             <property name="display">none</property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function(){	
+	
+		$('#table1').DataTable( { 
+			fixedHeader: true } 
+		);
+		
 		$("#table1 tr:gt(0)").hover(
 			function(){$(this).addClass("hover")},
 			function () { $(this).removeClass("hover") }
-		);
-		
-		$('#table1').DataTable( { 
-		fixedHeader: true } 
 		);
 	});	
 	
