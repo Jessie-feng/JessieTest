@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20151229-1956 Build &lt;4.3.2.v20151229-1956></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[appContext = reportContext.getAppContext();
+appContext.put("org.eclipse.birt.data.query.ResultBufferSize", "1024");
+
+var dealerId = params["dealerId"].value;
+var provId = params["provId"].value;
+var cityId = params["cityId"].value;
+var areaId = params["areaId"].value;
+
+
+var sqlString= "SELECT a3.id as bank_id,"
+       + "a3.name as bank_name,"
+       + "a2.prov_id as prov_id,"
+       + "a2.city_id as city_id,"
+       + "a2.area_id as area_id,"
+       + "a2.id as dealer_id,"
+       + "a2.name as dealer_name,"
+       + "a1.id as point_id,"
+	   + "a1.point_name as point_name,"
+       + "a1.lng as lng,"
+       + "a1.lat as lat,"
+       + "a1.linkman as linkman,"
+       + "a1.linkman_phone as linkman_phone,"
+       + "sum(case when a4.state =1 then 0 else 1 END) car_count,"
+       + "sum(case when a4.state in (0,7) then 1 else 0 END) bind_count,"
+	   + "sum(case when a4.state=2 then 1 else 0 END) notbind_count,"
+       + "sum(case when a5.device_code is not null then 1 else 0 end) device_total,"
+       + "sum(case when a5.device_status =1 then 1 else 0 END) bindcar_count,"
+	   + "sum(case when a5.device_status =0 then 1 else 0 END) notbindcar_count,"
+       + "sum(case when a6.is_handle =2 then 1 else 0 END) nothandle_count"
+	   + " FROM park_point a1"
+	   + " inner join dealer a2 on a1.dealer_id=a2.id"
+	   + " inner join bank a3 on a2.customer_id=a3.id"
+	   + " left join car a4 on a1.id=a4.park_point_id"
+	   + " left join device a5 on a1.id=a5.park_point_id"
+	   + " left join wsn_device_state_alarm1 a6 on a4.id=a6.car_id"
+	   + " where 1=1";
+		  
+if(dealerId != null) {
+	sqlString += " and a2.id=" + dealerId;
+}
+
+if(provId != null) {
+	sqlString += " and a2.prov_id=" + provId;
+}
+			 		 
+if(cityId != null) {
+	sqlString += " and a2.city_id=" + cityId;
+}
+
+if(areaId != null) {
+	sqlString += " and a2.area_id=" + areaId;
+}
+
+sqlString += " group by a3.id,a3.name,a2.prov_id,a2.city_id,a2.area_id,a2.id,a2.name,a1.id,a1.point_name,a1.lng,a1.lat,a1.linkman,a1.linkman_phone;";
+
+
+this.queryText =sqlString;]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="dealerId" id="3541">
+            <text-property name="promptText">经销商</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">dealer_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["name"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <cascading-parameter-group name="provGroup" id="3552">
+            <property name="dataSet">prov_city_area</property>
+            <property name="dataSetMode">single</property>
+            <parameters>
+                <scalar-parameter name="provId" id="3553">
+                    <text-property name="promptText">省</text-property>
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">false</property>
+                    <property name="dataSetName">prov_city_area</property>
+                    <expression name="valueExpr">row["prov_code"]</expression>
+                    <expression name="labelExpr">row["prov_name"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format"/>
+                </scalar-parameter>
+                <scalar-parameter name="cityId" id="3554">
+                    <text-property name="promptText">市</text-property>
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">false</property>
+                    <property name="dataSetName">prov_city_area</property>
+                    <expression name="valueExpr">row["city_code"]</expression>
+                    <expression name="labelExpr">row["city_name"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format"/>
+                </scalar-parameter>
+                <scalar-parameter name="areaId" id="3555">
+                    <text-property name="promptText">区</text-property>
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">false</property>
+                    <property name="dataSetName">prov_city_area</property>
+                    <expression name="valueExpr">row["area_code"]</expression>
+                    <expression name="labelExpr">row["area_name"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format"/>
+                </scalar-parameter>
+            </parameters>
+        </cascading-parameter-group>
+        <scalar-parameter name="is_alarm" id="3556">
+            <text-property name="promptText">告警</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">1</property>
+                    <property name="label">有</property>
+                </structure>
+                <structure>
+                    <property name="value">2</property>
+                    <property name="label">无</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="is_task" id="3557">
+            <text-property name="promptText">任务</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">1</property>
+                    <property name="label">有</property>
+                </structure>
+                <structure>
+                    <property name="value">2</property>
+                    <property name="label">无</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="username" id="3558">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="mysql" id="215">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/kdsp_ngvp</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">cm9vdEAxMjM=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="wsn_car_parkpoint_sum" id="3539">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="alias">bank_id</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="alias">bank_name</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a4.car_count,0)</property>
+                    <property name="alias">car_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a4.bind_count,0)</property>
+                    <property name="alias">bind_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a4.notbind_count,0)</property>
+                    <property name="alias">notbind_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a5.device_total,0)</property>
+                    <property name="alias">device_total</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a5.bindcar_count,0)</property>
+                    <property name="alias">bindcar_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a5.notbindcar_count,0)</property>
+                    <property name="alias">notbindcar_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ifnull(a6.nothandle_count,0)</property>
+                    <property name="alias">nothandle_count</property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_6</property>
+                    <property name="alias">dealer_id</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">name_7</property>
+                    <property name="alias">dealer_name</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_8</property>
+                    <property name="alias">point_id</property>
+                    <property name="analysis">measure</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">bank_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">bank_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">prov_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">city_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">area_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">dealer_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">dealer_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">point_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">lng</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">lat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">linkman</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">linkman_phone</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">car_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">bind_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">notbind_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">device_total</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">bindcar_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">notbindcar_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">nothandle_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">task_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[appContext = reportContext.getAppContext();
+appContext.put("org.eclipse.birt.data.query.ResultBufferSize", "1024");
+
+var dealerId = params["dealerId"].value;
+var provId = params["provId"].value;
+var cityId = params["cityId"].value;
+var areaId = params["areaId"].value;
+
+var isAlarm = params["is_alarm"].value;
+var isTask = params["is_task"].value;
+var username = params["username"].value;
+
+
+var sqlString= "SELECT a3.id as bank_id,"
+       + "a3.name as bank_name,"
+       + "a2.prov_id as prov_id,"
+       + "a2.city_id as city_id,"
+       + "a2.area_id as area_id,"
+       + "a2.id as dealer_id,"
+       + "a2.name as dealer_name,"
+       + "a1.id as point_id,"
+	   + "a1.point_name as point_name,"
+       + "a1.lng as lng,"
+       + "a1.lat as lat,"
+       + "a1.linkman as linkman,"
+       + "a1.linkman_phone as linkman_phone,"
+       + "ifnull(a4.car_count,0) as car_count,"
+       + "ifnull(a4.bind_count,0) as bind_count,"
+	   + "ifnull(a4.notbind_count,0) as notbind_count,"
+       + "ifnull(a5.device_total,0) as device_total,"
+       + "ifnull(a5.bindcar_count,0) as bindcar_count,"
+	   + "ifnull(a5.notbindcar_count,0) as notbindcar_count,"
+       + "ifnull(a6.nothandle_count,0) as nothandle_count,"
+       + "ifnull(a7.task_count,0) as task_count"
++ " FROM park_point a1                                                               "   
++ " inner join v_dealer a2 on a1.dealer_id=a2.id                                       "
++ " inner join bank a3 on a2.customer_id=a3.id                                       "
++ " left join (select park_point_id,                                                 "
++ "				  count(*) car_count,                                               "
++ "				  sum(case when state in (0,7) then 1 else 0 END) bind_count,       "
++ "				  sum(case when state=2 then 1 else 0 END) notbind_count			"  
++ "			 from car where state != 1                                              "
++ "			 group by park_point_id) a4 on a1.id=a4.park_point_id                   "
++ " left join (select park_point_id,                                                "
++ "				  count(*) device_total,                                            "
++ "				  sum(case when device_status=1 then 1 else 0 END) bindcar_count,   "
++ "				  sum(case when device_status=0 then 1 else 0 END) notbindcar_count "
++ "			 from device group by park_point_id) a5 on a1.id=a5.park_point_id       "
++ " left join (select park_point_id,                                                "
++ "				  count(*) nothandle_count                                          "
++ "		     from wsn_device_state_alarm1                                           "
++ "			 where is_handle=2 group by park_point_id) a6 on a1.id=a6.park_point_id "
++ " left join (select park_point_id,                                                "
++ "                   count(*) task_count                                           "
++ "              from wsn_car_task where is_handle=2 group by park_point_id) a7 on a1.id=a7.park_point_id"
++ " left join wsn_cust_account a8 on a3.id=a8.cust_id                               "
++ " where 1=1                                                                       ";
+
+if(username != "admin" &amp;&amp; username != "wsn_admin" &amp;&amp; username != "zt_admin") {
+	sqlString += " and a8.username='" + username + "'";
+}			 
+if(dealerId != null) {
+	sqlString += " and a2.id="+ dealerId;
+}
+
+if(provId != null) {
+	sqlString += " and a2.prov_id=" + provId;
+}
+			 		 
+if(cityId != null) {
+	sqlString += " and a2.city_id=" + cityId;
+}
+
+if(areaId != null) {
+	sqlString += " and a2.area_Id=" + areaId;
+}
+
+if(isAlarm == 1) {
+	sqlString += " and ifnull(a6.nothandle_count,0)>0";
+} else if (isAlarm == 2) {
+	sqlString += " and ifnull(a6.nothandle_count,0)=0";
+}
+
+if(isTask == 1) {
+	sqlString += " and ifnull(a7.task_count,0)>0";
+} else if (isTask == 2) {
+	sqlString += " and ifnull(a7.task_count,0)=0";
+}
+
+sqlString += ";";
+
+
+this.queryText =sqlString;]]></method>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">prov_id</property>
+                    <property name="nativeName">prov_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">city_id</property>
+                    <property name="nativeName">city_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">area_id</property>
+                    <property name="nativeName">area_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">id_6</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">name_7</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">id_8</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">point_name</property>
+                    <property name="nativeName">point_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">lng</property>
+                    <property name="nativeName">lng</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">lat</property>
+                    <property name="nativeName">lat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">linkman</property>
+                    <property name="nativeName">linkman</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">linkman_phone</property>
+                    <property name="nativeName">linkman_phone</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">car_count</property>
+                    <property name="nativeName">car_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">bind_count</property>
+                    <property name="nativeName">bind_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">notbind_count</property>
+                    <property name="nativeName">notbind_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">device_total</property>
+                    <property name="nativeName">device_total</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">bindcar_count</property>
+                    <property name="nativeName">bindcar_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">notbindcar_count</property>
+                    <property name="nativeName">notbindcar_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">nothandle_count</property>
+                    <property name="nativeName">nothandle_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">task_count</property>
+                    <property name="nativeName">task_count</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="dealer_list" id="3542">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+id,name
+from dealer
+where isdelete !=1]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="prov_city_area" id="3551">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">prov_code</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">prov_code</text-property>
+                    <text-property name="heading">prov_code</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">prov_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">prov_name</text-property>
+                    <text-property name="heading">prov_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">city_code</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">city_code</text-property>
+                    <text-property name="heading">city_code</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">city_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">city_name</text-property>
+                    <text-property name="heading">city_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">area_code</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">area_code</text-property>
+                    <text-property name="heading">area_code</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">area_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">area_name</text-property>
+                    <text-property name="heading">area_name</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">prov_code</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">prov_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">city_code</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">city_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">area_code</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">area_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">prov_code</property>
+                    <property name="nativeName">prov_code</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">prov_name</property>
+                    <property name="nativeName">prov_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">city_code</property>
+                    <property name="nativeName">city_code</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">city_name</property>
+                    <property name="nativeName">city_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">area_code</property>
+                    <property name="nativeName">area_code</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">area_name</property>
+                    <property name="nativeName">area_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+*
+from v_prov_city_area]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>prov_code</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>prov_code</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>prov_code</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>prov_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>prov_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>prov_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>city_code</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>city_code</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>city_code</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>city_name</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>city_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>city_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>area_code</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>area_code</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>area_code</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>area_name</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>area_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>area_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2"/>
+    </page-setup>
+    <body>
+        <text id="3512">
+            <property name="backgroundColor">#FFFF80</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<!--[if lt IE 9]>
+      <script src="http://www.kaiyuandao.com/pc/js/lib/html5shiv.min.js"></script>
+      <script src="http://www.kaiyuandao.com/pc/js/lib/respond.min.js"></script>
+<![endif]-->
+<script src="http://www.kaiyuandao.com/pc/js/require.js"></script>
+<script src="http://www.kaiyuandao.com/pc/js/htmlitem.js"></script>
+<script src="http://www.kaiyuandao.com/pc/js/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=kCkWjmxOA9CsQsoq2bpV4U020THiyrNI"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+
+<script>
+;(function(){
+	require.config({
+		baseUrl: "http://www.kaiyuandao.com/pc/js/",
+		paths: {
+			"jquery": "lib/jquery/jquery.min",
+			"cssPath": "../css"
+		},
+		waitSeconds: 15,
+		map: {
+		    '*': {
+		         'css': 'lib/css.min'
+		     }
+		}
+	});
+})();
+</script>]]></text-property>
+        </text>
+        <label id="3520">
+            <property name="fontFamily">"黑体"</property>
+            <property name="fontSize">10pt</property>
+            <property name="color">#FF8040</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">停放点车辆数</text-property>
+        </label>
+        <extended-item extensionName="HtmlItem" name="parksumMapData" id="3540">
+            <property name="display">none</property>
+            <property name="height">0.9270833333333334in</property>
+            <property name="width">1.71875in</property>
+            <property name="dataSet">wsn_car_parkpoint_sum</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">bank_id</property>
+                    <text-property name="displayName">bank_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bank_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">bank_name</property>
+                    <text-property name="displayName">bank_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bank_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">dealer_id</property>
+                    <text-property name="displayName">dealer_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["dealer_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">dealer_name</property>
+                    <text-property name="displayName">dealer_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["dealer_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">point_id</property>
+                    <text-property name="displayName">point_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["point_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">point_name</property>
+                    <text-property name="displayName">point_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["point_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">lng</property>
+                    <text-property name="displayName">lng</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lng"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">lat</property>
+                    <text-property name="displayName">lat</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lat"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">linkman</property>
+                    <text-property name="displayName">linkman</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["linkman"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">linkman_phone</property>
+                    <text-property name="displayName">linkman_phone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["linkman_phone"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">car_count</property>
+                    <text-property name="displayName">car_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["car_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">bind_count</property>
+                    <text-property name="displayName">bind_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bind_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">notbind_count</property>
+                    <text-property name="displayName">notbind_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["notbind_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">device_total</property>
+                    <text-property name="displayName">device_total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["device_total"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">bindcar_count</property>
+                    <text-property name="displayName">bindcar_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bindcar_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">notbindcar_count</property>
+                    <text-property name="displayName">notbindcar_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["notbindcar_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">nothandle_count</property>
+                    <text-property name="displayName">nothandle_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["nothandle_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">task_count</property>
+                    <text-property name="displayName">task_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["task_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <text id="2779">
+            <property name="marginTop">0pt</property>
+            <property name="pageBreakAfter">auto</property>
+            <property name="pageBreakBefore">auto</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["显示什么"].value != '贷款人数'</expression>
+                </structure>
+            </list-property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<div id="parkMap" style="height:8in;></div>]]></text-property>
+        </text>
+        <text id="2780">
+            <property name="display">none</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>  
+	var map = new BMap.Map("parkMap");          // 创建地图实例
+
+    var point = new BMap.Point(109.4,31);
+    map.centerAndZoom(point, 6);             // 初始化地图，设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(); // 允许滚轮缩放
+
+	var el = document.getElementById("parksumMapData");
+	var rs = el.__instance.getResultSet(); 
+	
+	var lngIndex = rs.columnIndex("lng");
+	var latIndex = rs.columnIndex("lat");
+	var bankNameIndex = rs.columnIndex("bank_name");
+	var dealerIdIndex = rs.columnIndex("dealer_id");
+	var dealerNameIndex = rs.columnIndex("dealer_name");
+	var pointIdIndex = rs.columnIndex("point_id");
+	var pointNameIndex = rs.columnIndex("point_name");
+	var linkmanIndex = rs.columnIndex("linkman");
+	var linkmanphoneIndex = rs.columnIndex("linkman_phone");
+	var carcountIndex = rs.columnIndex("car_count");
+	var bindcountIndex = rs.columnIndex("bind_count");
+	var notbindcountIndex = rs.columnIndex("notbind_count");
+
+	var devicecountIndex = rs.columnIndex("device_total");
+	var bindcarIndex = rs.columnIndex("bindcar_count");
+	var notbindcarIndex = rs.columnIndex("notbindcar_count");
+	var nothandleIndex = rs.columnIndex("nothandle_count");
+	var taskcountIndex = rs.columnIndex("task_count");
+	
+	var values = rs.data.values;
+	var lng;
+	var lat;
+	var count;
+	var points=[]; 
+	var marks = [];
+	var pt = null;
+	
+	
+	
+	for(var i = 0, len = values.length; i < len; i++) {
+		var e = values[i];  
+		//var myIcon = new BMap.Icon("http://106.75.30.249:8081/kdsp/image/car.gif",new BMap.Size(25,25),{imageOffset: new BMap.Size(0,-10)});
+		pt = new BMap.Point(e[lngIndex], e[latIndex]); 
+		//var marker = new BMap.Marker(pt,{icon:myIcon});
+		var marker = new BMap.Marker(pt);
+		map.centerAndZoom(pt, 16);
+		var circle = new BMap.Circle(pt,150);
+		
+		if (e[nothandleIndex]>0) {
+			circle.setStrokeColor("red");
+			circle.setStrokeWeight(1.5);
+			circle.setFillColor("#FFE6D9");
+		} else {
+			circle.setStrokeColor("blue");
+			circle.setStrokeWeight(0.2);
+			circle.setFillColor("#ECF5FF");
+		}
+		
+		var dealer_url="http://106.75.30.249:8081/kdsp/frameset?__report=wsn_car_dealer.rptdesign&amp;permission=7&amp;permission=7&amp;dealerId="+e[dealerIdIndex];
+		var point_url="http://106.75.30.249:8081/kdsp/frameset?__report=wsn_car_park_point.rptdesign&amp;permission=7&amp;permission=7&amp;parkId="+e[pointIdIndex];
+		var alarm_url="http://106.75.30.249:8081/kdsp/frameset?__report=wsn_car_alarm.rptdesign&amp;permission=7&amp;permission=7&amp;pointId="+e[pointIdIndex]+"&amp;isHandle=2";
+		var car_url="http://106.75.30.249:8081/kdsp/frameset?__report=wsn_car_info.rptdesign&amp;permission=7&amp;permission=7&amp;pointId="+e[pointIdIndex];
+		var task_url="http://106.75.30.249:8081/kdsp/frameset?__report=wsn_car_task.rptdesign&amp;permission=7&amp;permission=7&amp;isHandle=2&amp;pointId="+e[pointIdIndex];
+		
+		var message = "<div style='line-height:1.8em;font-size:12px;'><b style='color:#FF5809'>停放点:</b><a href=" + point_url +" target='_blank'>"+e[pointNameIndex]+"</a></br><b style='color:#FF5809'>经销商:</b><a href="+dealer_url+" target='_blank'>"+e[dealerNameIndex]+"</a></br><b style='color:#FF5809'>联系人:</b>"+e[linkmanIndex]+"<b style='color:	#FF5809'>&amp;nbsp;&amp;nbsp;电话:</b>"+e[linkmanphoneIndex]+"</br><b style='color:#FF5809'>总终端:</b>"+e[devicecountIndex]+"<b>&amp;nbsp;&amp;nbsp;已绑:</b>"+e[bindcarIndex]+"<b>&amp;nbsp;闲置:</b>"+e[notbindcarIndex]+"</br><b style='color:#FF5809'>总车辆:</b><a href="+car_url+" target='_blank'>"+e[carcountIndex]+"</a><b>&amp;nbsp;&amp;nbsp;已绑:</b>"+e[bindcountIndex]+"<b>&amp;nbsp;未绑:</b>"+e[notbindcountIndex]+"</br><b style='color:#FF5809'>未处理告警:</b><a href="+alarm_url+" target='_blank'>"+e[nothandleIndex]+"</a><b style='color:#FF5809'>&amp;nbsp;未处理任务:</b><a href="+task_url+" target='_blank'>"+e[taskcountIndex]+"</a></br></div>";
+		
+		map.addOverlay(marker);
+		map.addOverlay(circle);
+		marks.push(marker);
+		addClickHandler(message,marker);
+		
+	};
+	
+	function addClickHandler(content,marker){  
+            marker.addEventListener("click",function(e){  
+                openInfo(content,e)}  
+            );
+            marker.addEventListener("mouseover",function(e){  
+                openInfo(content,e)}  
+            );   
+    }
+    
+    function openInfo(content,e){  
+            var p = e.target;  
+            var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);  
+            var infoWindow = new BMap.InfoWindow(content);  // 创建信息窗口对象   
+            map.openInfoWindow(infoWindow,point); //开启信息窗口  
+    }          
+	
+	function getPointName(dealerName,pointName){
+		var o = {};
+		//o.offset="new BMap.Size(-10,0)";
+		o.title="<span style=\"font-size:14px;color:#0A8021\">"+dealerName+"-"+pointName+"</span>";
+		o.enableMessage="true";
+		
+		return o;
+	}
+	
+	
+
+    if(!isSupportCanvas()){
+    	alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+    }
+    
+	//判断浏览区是否支持canvas
+    function isSupportCanvas(){
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext &amp;&amp; elem.getContext('2d'));
+    }
+
+</script>]]></text-property>
+        </text>
+    </body>
+</report>

@@ -1,0 +1,1616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20151229-1956 Build &lt;4.3.2.v20151229-1956></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">192</property>
+    <parameters>
+        <scalar-parameter name="bankId" id="12622">
+            <property name="hidden">false</property>
+            <text-property name="promptText">客户</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
+            <property name="dataSetName">bank_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["name"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="dealerId" id="12642">
+            <text-property name="promptText">经销商</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">dealer_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["name"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="parkPointId" id="12646">
+            <text-property name="promptText">停靠点</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">park_point_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["point_name"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="date" id="12771">
+            <text-property name="promptText">查询日期</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.addDay(new Date(),-1)</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="mysql" id="215">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/kdsp_ngvp</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">cm9vdEAxMjM=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="wsn_daily" id="216">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="alias">customer_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_5</property>
+                    <property name="alias">dealer_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">id_7</property>
+                    <property name="alias">point_id</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">month</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">customer_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">customer_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">dealer_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">dealer_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">point_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">park_point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">bind_today</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">total_bind</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">traffic_today</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">transfer_today</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">transfer_total</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">move_today</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">move_today_confirm</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">move_total</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">unbind_today</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">unbind_total</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">service_total</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">total_inbank</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[appContext = reportContext.getAppContext();
+appContext.put("org.eclipse.birt.data.query.ResultBufferSize", "1024");
+
+var bankId = params["bankId"].value;
+var dealerId = params["dealerId"].value;
+var parkPointId = params["parkPointId"].value;
+var date = params["date"].value;
+
+var sqlString= "SELECT "
+			 + "a.date, "
+			 + "date_format(a.date,'%Y%m') month, "
+			 + "a1.id customer_id, "
+			 + "a.customer_name, "
+			 + "a2.id dealer_id, "
+			 + "a.dealer_name, "
+			 + "a3.id point_id, "
+			 + "a.park_point_name, "
+			 + "a.bind_today, "
+			 + "a.total_bind, "
+			 + "a.traffic_today, "
+			 + "a.transfer_today, "
+			 + "a.transfer_total, "
+			 + "a.move_today, "
+			 + "a.move_today_confirm, "
+			 + "a.move_total, "
+			 + "a.unbind_today, "
+			 + "a.unbind_total, "
+			 + "a.service_total, "
+			 + "a.total_inbank "
+			 + "from wsn_daily a "
+			 + "inner join bank a1 on a1.name=a.customer_name "
+			 + "inner join dealer a2 on a2.name = a.dealer_name "
+			 + "inner join park_point a3 on a3.point_name = a.park_point_name "
+			 + "where 1=1 ";
+
+if(bankId != null) {
+	sqlString += " and a1.id=" + bankId;
+}
+
+if(dealerId != null) {
+	sqlString += " and a2.id=" + dealerId;
+}
+
+if(parkPointId != null) {
+	sqlString += " and a3.id=" + parkPointId;
+}
+
+
+if(date != null) {
+	sqlString += " and a.date= '" + date + "'";
+}	
+
+sqlString += " ;";
+
+
+this.queryText =sqlString;]]></method>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date</property>
+                    <property name="nativeName">date</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">month</property>
+                    <property name="nativeName">month</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">customer_name</property>
+                    <property name="nativeName">customer_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">id_5</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">dealer_name</property>
+                    <property name="nativeName">dealer_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">id_7</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">park_point_name</property>
+                    <property name="nativeName">park_point_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">bind_today</property>
+                    <property name="nativeName">bind_today</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">total_bind</property>
+                    <property name="nativeName">total_bind</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">traffic_today</property>
+                    <property name="nativeName">traffic_today</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">transfer_today</property>
+                    <property name="nativeName">transfer_today</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">transfer_total</property>
+                    <property name="nativeName">transfer_total</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">move_today</property>
+                    <property name="nativeName">move_today</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">move_today_confirm</property>
+                    <property name="nativeName">move_today_confirm</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">move_total</property>
+                    <property name="nativeName">move_total</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">unbind_today</property>
+                    <property name="nativeName">unbind_today</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">unbind_total</property>
+                    <property name="nativeName">unbind_total</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">service_total</property>
+                    <property name="nativeName">service_total</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">total_inbank</property>
+                    <property name="nativeName">total_inbank</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="bank_list" id="12643">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+id,name
+from 
+bank
+where id = 5;]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="dealer_list" id="12644">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+id, name
+from 
+dealer
+where id in(13,14)]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="park_point_list" id="12645">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">point_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">point_name</text-property>
+                    <text-property name="heading">point_name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">point_name</property>
+                    <property name="nativeName">point_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+id, point_name
+from 
+park_point
+where id in (5,11,20,59);]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>point_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>point_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>point_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="3512">
+            <property name="backgroundColor">#FFFF80</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script src="./resource/wsn/jquery-3.1.1.js"></script>
+<script src="./resource/wsn/htmlitem.js"></script>
+<script>
+var link1=document.createElement("link");
+    link1.setAttribute("rel", "stylesheet");  
+    link1.setAttribute("type", "text/css");  
+    link1.setAttribute("href", "resource/wsn/wsnsimpletable.css");  
+  
+    var heads = document.getElementsByTagName("head"); 
+    heads[0].appendChild(link1);
+
+</script>
+]]></text-property>
+        </text>
+        <label id="7">
+            <property name="fontSize">24pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">业务报表</text-property>
+        </label>
+        <table id="12647">
+            <property name="dataSet">wsn_daily</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">date</property>
+                    <text-property name="displayName">date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">month</property>
+                    <text-property name="displayName">month</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["month"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">customer_id</property>
+                    <text-property name="displayName">customer_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["customer_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">customer_name</property>
+                    <text-property name="displayName">customer_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["customer_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">dealer_id</property>
+                    <text-property name="displayName">dealer_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["dealer_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">dealer_name</property>
+                    <text-property name="displayName">dealer_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["dealer_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">point_id</property>
+                    <text-property name="displayName">point_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["point_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">park_point_name</property>
+                    <text-property name="displayName">park_point_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["park_point_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bind_today</property>
+                    <text-property name="displayName">bind_today</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bind_today"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">total_bind</property>
+                    <text-property name="displayName">total_bind</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total_bind"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">traffic_today</property>
+                    <text-property name="displayName">traffic_today</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["traffic_today"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">transfer_today</property>
+                    <text-property name="displayName">transfer_today</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["transfer_today"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">transfer_total</property>
+                    <text-property name="displayName">transfer_total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["transfer_total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">move_today</property>
+                    <text-property name="displayName">move_today</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["move_today"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">move_today_confirm</property>
+                    <text-property name="displayName">move_today_confirm</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["move_today_confirm"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">move_total</property>
+                    <text-property name="displayName">move_total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["move_total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">unbind_today</property>
+                    <text-property name="displayName">unbind_today</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["unbind_today"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">unbind_total</property>
+                    <text-property name="displayName">unbind_total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["unbind_total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">service_total</property>
+                    <text-property name="displayName">service_total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["service_total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">total_inbank</property>
+                    <text-property name="displayName">total_inbank</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total_inbank"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">total_bind</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["bind_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_1</property>
+                    <text-property name="displayName">total_traffic</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["traffic_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_2</property>
+                    <text-property name="displayName">total_transfer</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["transfer_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_3</property>
+                    <text-property name="displayName">total_move</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["move_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_4</property>
+                    <text-property name="displayName">total_move_confirm</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["move_today_confirm"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_5</property>
+                    <text-property name="displayName">total_unbind</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["unbind_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_6</property>
+                    <text-property name="displayName">total_bind_month</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if(BirtDateTime.month(dataSetRow["date"]) !=BirtDateTime.month(BirtDateTime.today()) &amp;&amp; &#13;
+dataSetRow["date"] == BirtDateTime.addDay(BirtDateTime.firstDayOfMonth(BirtDateTime.addMonth(dataSetRow["date"],1)),-1))&#13;
+{1}&#13;
+ else if(BirtDateTime.month(dataSetRow["date"])==BirtDateTime.month(BirtDateTime.today()) &amp;&amp; dataSetRow["date"] == BirtDateTime.addDay(BirtDateTime.today(),-1))&#13;
+ {2}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <text-property name="displayName">1111</text-property>
+                    <expression name="expression" type="javascript">if(BirtDateTime.month(dataSetRow["date"]) != BirtDateTime.month(BirtDateTime.today()) &#13;
+&amp;&amp;dataSetRow["date"] == BirtDateTime.addDay(BirtDateTime.firstDayOfMonth(BirtDateTime.addMonth(dataSetRow["date"],1)),-1))&#13;
+{BirtDateTime.month(dataSetRow["date"])}&#13;
+else if(BirtDateTime.month(dataSetRow["date"]) == BirtDateTime.month(BirtDateTime.today()) &#13;
+&amp;&amp; dataSetRow["date"] == BirtDateTime.addDay(BirtDateTime.today(),-1))&#13;
+{BirtDateTime.month(dataSetRow["date"])}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_7</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["bind_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_8</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["transfer_today"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_9</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["move_total"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_10</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["unbind_total"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_11</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["service_total"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_12</property>
+                    <text-property name="displayName">total_month</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["total_inbank"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_13</property>
+                    <text-property name="displayName">total_month_bind</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["total_bind"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_14</property>
+                    <text-property name="displayName">total_month_transfer</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["transfer_total"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <expression name="bookmark" type="javascript">"simpletable"</expression>
+            <column id="12751"/>
+            <column id="12754"/>
+            <column id="12756"/>
+            <column id="12758"/>
+            <column id="12759"/>
+            <column id="12760"/>
+            <column id="12761"/>
+            <column id="12762"/>
+            <column id="12763"/>
+            <column id="12764"/>
+            <column id="12765"/>
+            <column id="12766"/>
+            <column id="12767"/>
+            <column id="12768"/>
+            <column id="12769"/>
+            <column id="12770"/>
+            <header>
+                <row id="12648">
+                    <property name="backgroundColor">#FF8000</property>
+                    <property name="height">0.34in</property>
+                    <cell id="12649">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12650">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12655">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12656">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">组织</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12659">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12660">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">经销商</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12663">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12664">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">停靠点</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12665">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12666">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日新增绑定车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12667">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12668">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">累计绑定车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12669">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12670">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日运输车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12671">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12672">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日签收车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12673">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12674">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">累计签收车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12675">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12676">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日移库车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12677">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12678">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日移库确认数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12679">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12680">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">累计移库车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12681">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12682">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">今日解绑车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12683">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12684">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">累计解绑车辆数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12685">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12686">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">服务车辆总数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12687">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12688">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">在库车辆总数</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="12689">
+                    <property name="height">0.29in</property>
+                    <cell id="12690">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12691">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">date</property>
+                        </data>
+                    </cell>
+                    <cell id="12696">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12697">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">customer_name</property>
+                        </data>
+                    </cell>
+                    <cell id="12700">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12701">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">dealer_name</property>
+                        </data>
+                    </cell>
+                    <cell id="12704">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12705">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">park_point_name</property>
+                        </data>
+                    </cell>
+                    <cell id="12706">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12707">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">bind_today</property>
+                        </data>
+                    </cell>
+                    <cell id="12708">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12709">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">total_bind</property>
+                        </data>
+                    </cell>
+                    <cell id="12710">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12711">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">traffic_today</property>
+                        </data>
+                    </cell>
+                    <cell id="12712">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12713">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">transfer_today</property>
+                        </data>
+                    </cell>
+                    <cell id="12714">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12715">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">transfer_total</property>
+                        </data>
+                    </cell>
+                    <cell id="12716">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12717">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">move_today</property>
+                        </data>
+                    </cell>
+                    <cell id="12718">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12719">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">move_today_confirm</property>
+                        </data>
+                    </cell>
+                    <cell id="12720">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12721">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">move_total</property>
+                        </data>
+                    </cell>
+                    <cell id="12722">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12723">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">unbind_today</property>
+                        </data>
+                    </cell>
+                    <cell id="12724">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12725">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">unbind_total</property>
+                        </data>
+                    </cell>
+                    <cell id="12726">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12727">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">service_total</property>
+                        </data>
+                    </cell>
+                    <cell id="12728">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12729">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">total_inbank</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="12842">
+                    <property name="textAlign">center</property>
+                    <cell id="12843">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <label id="12859">
+                            <property name="textAlign">center</property>
+                            <text-property name="text">合计</text-property>
+                        </label>
+                    </cell>
+                    <cell id="12847">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12860">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                    <cell id="12848">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12875">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_13</property>
+                        </data>
+                    </cell>
+                    <cell id="12849">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12861">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_1</property>
+                        </data>
+                    </cell>
+                    <cell id="12850">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12862">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_2</property>
+                        </data>
+                    </cell>
+                    <cell id="12851">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12876">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_14</property>
+                        </data>
+                    </cell>
+                    <cell id="12852">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12863">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_3</property>
+                        </data>
+                    </cell>
+                    <cell id="12853">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12864">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_4</property>
+                        </data>
+                    </cell>
+                    <cell id="12854">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12871">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_9</property>
+                        </data>
+                    </cell>
+                    <cell id="12855">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12865">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_5</property>
+                        </data>
+                    </cell>
+                    <cell id="12856">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12872">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_10</property>
+                        </data>
+                    </cell>
+                    <cell id="12857">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12873">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_11</property>
+                        </data>
+                    </cell>
+                    <cell id="12858">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <data id="12874">
+                            <property name="fontFamily">"方正兰亭准黑_GBK"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation_12</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -2014,136 +2014,22 @@ order by 1 desc]]></xml-property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<div id="table1div"  style="" ></div>]]></text-property>
         </text>
-        <text id="3519">
+        <text id="6282">
             <property name="fontSize">10pt</property>
             <property name="marginLeft">0pt</property>
             <property name="display">none</property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script>  
-	(function($){
-				var el;		
-			/*	var p_period = '<VALUE-OF>params["周期"].value</VALUE-OF>';
-				if (p_period === "日"){ el = document.getElementById("ds_day");}
-				if (p_period === "周"){ el = document.getElementById("ds_week");}
-				if (p_period === "月"){ el = document.getElementById("ds_month");}  */
-				
-				el = document.getElementById("ds_day");
-				var rs = el.__instance.getResultSet(); 
-				var values = rs.data.values;
-				var rows =  values.length;
-				var columns = values[0].length;
-				var date2Index = rs.columnIndex("date2");
-				var registerIndex = rs.columnIndex("register");
-				var fakeIndex = rs.columnIndex("fake");
-				var applyinregisterIndex = rs.columnIndex("applyinregister");
-				var openinregisterIndex = rs.columnIndex("openinregister");
-				var applyIndex = rs.columnIndex("apply");
-				var applynewIndex = rs.columnIndex("applynew");
-				var applyoldIndex = rs.columnIndex("applyold");
-				var antifraudinapplyIndex = rs.columnIndex("antifraudinapply");
-				var passinapplyIndex = rs.columnIndex("passinapply");
-				var sendinapplyIndex = rs.columnIndex("sendinapply");		
-				var sendIndex = rs.columnIndex("send");
-				var rulepassIndex = rs.columnIndex("rulepass");
-				var tongdunpassIndex = rs.columnIndex("tongdunpass");
-				var comtelpassIndex = rs.columnIndex("comtelpass");
-				var pertelpassIndex = rs.columnIndex("pertelpass");
-				var openIndex = rs.columnIndex("open");		
-						
-				
-				var t1=$("<table class='table1class'  id='table1'></table>"); 
-				var thead = $('<thead></thead>');				
-				var tr = $('<tr></tr>');				
-				$('<th>' + '注册日期' + '</th>').appendTo(tr);
-				$('<th>' + '当期注册数' + '</th>').appendTo(tr);
-				$('<th>' + '其中刷量数' + '</th>').appendTo(tr);
-				$('<th>' + '其中实际注册数' + '</th>').appendTo(tr);
-				$('<th>' + '其中申请数' + '</th>').appendTo(tr);
-				$('<th>' + '其中开户数' + '</th>').appendTo(tr);
-				$('<th>' + '注册申请转化率' + '</th>').appendTo(tr);
-				$('<th>' + '注册开户转化率' + '</th>').appendTo(tr);
-				
-				$('<th>' + '当期申请数' + '</th>').appendTo(tr);
-				$('<th>' + '首次申请数' + '</th>').appendTo(tr);
-				$('<th>' + '重复申请数' + '</th>').appendTo(tr);
-				$('<th>' + '通过反欺诈' + '</th>').appendTo(tr);
-				$('<th>' + '审核通过数' + '</th>').appendTo(tr);
-				$('<th>' + '其中送件数' + '</th>').appendTo(tr);				
-				$('<th>' + '申请送件转化率' + '</th>').appendTo(tr);
-				
-				$('<th>' + '当期送件数' + '</th>').appendTo(tr);
-				$('<th>' + '规则通过数' + '</th>').appendTo(tr);
-				$('<th>' + '二次风控通过数' + '</th>').appendTo(tr);
-				$('<th>' + '单电通过数' + '</th>').appendTo(tr);
-				$('<th>' + '个电通过数' + '</th>').appendTo(tr);
-				
-				$('<th>' + '当期开户' + '</th>').appendTo(tr);
-				$('<th>' + '送件开户率' + '</th>').appendTo(tr);
-				$('<th>' + '兴业开户率' + '</th>').appendTo(tr);
-				$('<th>' + '行健开户率' + '</th>').appendTo(tr);
-				
-				tr.appendTo(thead);
-				thead.appendTo(t1);	
-					
-				var tbody = $('<tbody></tbody>');	 
-					
-				for( var i=0; i < rows; i++)
-				{
-					var e = values[i];
-					var date2 = e[date2Index];
-					var register = e[registerIndex];
-					var fake = e[fakeIndex]; 
-					var applyinregister = e[applyinregisterIndex]; 
-					var openinregister = e[openinregisterIndex]; 
-					var apply = e[applyIndex]; 
-					var applynew = e[applynewIndex];
-					var applyold = e[applyoldIndex];
-					var antifraudinapply = e[antifraudinapplyIndex];
-					var passinapply = e[passinapplyIndex];
-					var sendinapply = e[sendinapplyIndex];		
-					var send = e[sendIndex];
-					var rulepass = e[rulepassIndex];
-					var tongdunpass = e[tongdunpassIndex];
-					var comtelpass = e[comtelpassIndex];
-					var pertelpass = e[pertelpassIndex];
-					var open1 = e[openIndex];
-					
-					var tr = $("<tr></tr>");
-					
-					$("<td>" + date2 + "</td>").appendTo(tr);
-					$("<td>" + register + "</td>").appendTo(tr);
-					$("<td>" + fake + "</td>").appendTo(tr);
-					$("<td>" + (register-fake) + "</td>").appendTo(tr);
-					$("<td>" + applyinregister + "</td>").appendTo(tr);
-					$("<td>" + openinregister + "</td>").appendTo(tr);
-					$("<td>" + openinregister + "</td>").appendTo(tr);					
-					$('<th>' + applyinregister/(register-fake) + '</th>').appendTo(tr);
-				    $('<th>' + openinregister/(register-fake) + '</th>').appendTo(tr);
-					
-					
-					$("<td>"+apply+"</td>").appendTo(tr);
-					$("<td>"+applynew+"</td>").appendTo(tr);
-					$("<td>"+applyold+"</td>").appendTo(tr);
-					$("<td>"+antifraudinapply+"</td>").appendTo(tr);
-					$("<td>"+passinapply+"</td>").appendTo(tr);
-					$("<td>"+sendinapply+"</td>").appendTo(tr);
-					$('<th>' + sendinapply/apply + '</th>').appendTo(tr);
-					
-					$("<td>"+send+"</td>").appendTo(tr);
-					$("<td>"+rulepass+"</td>").appendTo(tr);
-					$("<td>"+tongdunpass+"</td>").appendTo(tr);
-					$("<td>"+comtelpass+"</td>").appendTo(tr);
-					$("<td>"+pertelpass+"</td>").appendTo(tr);
-					$("<td>"+open1+"</td>").appendTo(tr);					
-					$("<td>"+open1/send+"</td>").appendTo(tr);
-					$("<td>"+rulepass/send+"</td>").appendTo(tr);
-					$("<td>"+pertelpass/rulepass+"</td>").appendTo(tr);					
-					
-					tr.appendTo(tbody);
-				 }
-				 tbody.appendTo(t1);
-				 t1.appendTo($('#table1div'));
-	})(jQuery);
+	function abc($, tableid){
+			var div = document.createElement('div');
+			$(div).attr('id','div_'+tableid);
+			var table = document.createElement('table');
+			$(table).attr('id',tableid);
+			$(table).appendTo($(div));
+			
+	};
+	
+	abc(jQuery, 'tableid')
 
 </script>
 

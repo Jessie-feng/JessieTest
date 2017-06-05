@@ -1,0 +1,1601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20151229-1956 Build &lt;4.3.2.v20151229-1956></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">192</property>
+    <parameters>
+        <scalar-parameter name="bankId" id="329">
+            <text-property name="promptText">客户</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">bank_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["name"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="dealerId" id="330">
+            <text-property name="promptText">经销商</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">dealer_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["name"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pointId" id="331">
+            <text-property name="promptText">停靠点</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">point_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["point_name"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="vin" id="324">
+            <text-property name="promptText">车架号</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="deviceCode" id="325">
+            <text-property name="promptText">设备ID</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="mysql" id="215">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/kdsp_ngvp</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">cm9vdEAxMjM=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="wsn_car_bind" id="216">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">report_date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">vin</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">device_code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">bind_point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">bind_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">start_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">end_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">end_point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">actual_start_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">actual_end_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">actual_move_hour</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">transfer_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">actual_transfer_hour</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">busi_code</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">unbind_time</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">bind_day</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">isday</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[appContext = reportContext.getAppContext();
+appContext.put("org.eclipse.birt.data.query.ResultBufferSize", "1024");
+
+var bankId = params["bankId"].value;
+var dealerId = params["dealerId"].value;
+var pointId = params["pointId"].value;
+var vin = params["vin"].value;
+var deviceCode = params["deviceCode"].value;
+
+var sqlString= "select"
+			 + " a.report_date,"
+			 + " a.vin,"
+			 + " a.device_code,"
+			 + " a3.id as customer_id,"
+			 + " a3.name as customer_name,"
+			 +　" a2.id as dealer_id,"
+			 + " a2.name as dealer_name,"
+			 + " a1.id as park_point_id,"
+			 + " a.bind_point_name,"
+			 + " a.bind_time,"
+			 + " a.start_time,"
+			 + " a.end_time,"
+			 + " a.end_point_name,"
+			 + " a.actual_start_time,"
+			 + " a.actual_end_time,"
+			 + " sec_to_time(unix_timestamp(a.actual_end_time) - unix_timestamp(a.actual_start_time)) as actual_move_hour,"
+			 + " a.transfer_time,"
+			 + " sec_to_time(unix_timestamp(a.transfer_time) - unix_timestamp(a.actual_start_time)) as actual_transfer_hour,"
+			 + " a.busi_code,"
+			 + " a.unbind_time,"
+			 + " from_unixtime((unix_timestamp(a.unbind_time) - unix_timestamp(a.bind_time)),'%j %H:%i:%S') as bind_day,"
+			 + " case when from_unixtime((unix_timestamp(a.unbind_time) - unix_timestamp(a.bind_time)),'%j %H:%i:%S')> 90 then 1 else 0 end isday"
+			 + " from wsn_bind_car_info_detil a"
+			 + " left join park_point a1 on a.park_point_id = a1.id"
+			 + " left join dealer a2 on a1.dealer_id = a2.id"
+			 + " left join bank a3 on a2.customer_id = a3.id"
+			 + " where 1=1";
+
+if(bankId != null) {
+	sqlString += " and a3.id=" + bankId;
+}
+
+if(dealerId != null) {
+	sqlString += " and a2.id=" + dealerId;
+}
+
+if(pointId != null) {
+	sqlString += " and a1.id=" + pointId;
+}
+
+if(vin != null) {
+	sqlString += " and trim(a.vin) like '%" + vin + "%'";
+}
+		 
+if(deviceCode != null) {
+	sqlString += " and trim(a.device_code) like '%" + deviceCode + "%'";
+}
+
+
+
+sqlString += ";";
+
+
+this.queryText =sqlString;]]></method>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">report_date</property>
+                    <property name="nativeName">report_date</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">vin</property>
+                    <property name="nativeName">vin</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">device_code</property>
+                    <property name="nativeName">device_code</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">bind_point_name</property>
+                    <property name="nativeName">bind_point_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">bind_time</property>
+                    <property name="nativeName">bind_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">start_time</property>
+                    <property name="nativeName">start_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">end_time</property>
+                    <property name="nativeName">end_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">end_point_name</property>
+                    <property name="nativeName">end_point_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">actual_start_time</property>
+                    <property name="nativeName">actual_start_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">actual_end_time</property>
+                    <property name="nativeName">actual_end_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">actual_move_hour</property>
+                    <property name="nativeName">actual_move_hour</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">transfer_time</property>
+                    <property name="nativeName">transfer_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">actual_transfer_hour</property>
+                    <property name="nativeName">actual_transfer_hour</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">busi_code</property>
+                    <property name="nativeName">busi_code</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">unbind_time</property>
+                    <property name="nativeName">unbind_time</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">bind_day</property>
+                    <property name="nativeName">bind_day</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">isday</property>
+                    <property name="nativeName">isday</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="bank_list" id="326">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select id,name
+from 
+bank]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="dealer_list" id="327">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select id,name
+from 
+dealer]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="point_list" id="328">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">point_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">point_name</text-property>
+                    <text-property name="heading">point_name</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">point_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">point_name</property>
+                    <property name="nativeName">point_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select id,point_name
+from 
+park_point]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>point_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>point_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>point_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="217">
+            <property name="fontSize">24pt</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">车辆新增绑定明细</text-property>
+        </label>
+        <table id="218">
+            <property name="dataSet">wsn_car_bind</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">report_date</property>
+                    <text-property name="displayName">report_date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["report_date"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">vin</property>
+                    <text-property name="displayName">vin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["vin"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">device_code</property>
+                    <text-property name="displayName">device_code</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["device_code"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bind_point_name</property>
+                    <text-property name="displayName">bind_point_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bind_point_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bind_time</property>
+                    <text-property name="displayName">bind_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bind_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">start_time</property>
+                    <text-property name="displayName">start_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["start_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">end_time</property>
+                    <text-property name="displayName">end_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["end_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">end_point_name</property>
+                    <text-property name="displayName">end_point_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["end_point_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">actual_start_time</property>
+                    <text-property name="displayName">actual_start_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["actual_start_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">actual_end_time</property>
+                    <text-property name="displayName">actual_end_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["actual_end_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">actual_move_hour</property>
+                    <text-property name="displayName">actual_move_hour</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["actual_move_hour"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">transfer_time</property>
+                    <text-property name="displayName">transfer_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["transfer_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">actual_transfer_hour</property>
+                    <text-property name="displayName">actual_transfer_hour</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["actual_transfer_hour"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">busi_code</property>
+                    <text-property name="displayName">busi_code</text-property>
+                    <expression name="expression" type="javascript">if(dataSetRow["busi_code"]=='1300300020'){"正常签收"}&#13;
+else if (dataSetRow["busi_code"]=='1300300026'){"正常签收"}&#13;
+else if (dataSetRow["busi_code"]=='1300300027'){"强拆签收"}&#13;
+else if (dataSetRow["busi_code"]=='1300300025'){"强拆签收"}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">unbind_time</property>
+                    <text-property name="displayName">unbind_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["unbind_time"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">bind_day</property>
+                    <text-property name="displayName">bind_day</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bind_day"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">isday</property>
+                    <text-property name="displayName">isday</text-property>
+                    <expression name="expression" type="javascript">if(dataSetRow["isday"]=="1"){"是"}&#13;
+else if(dataSetRow["isday"]=="0"){"否"}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="307"/>
+            <column id="308"/>
+            <column id="309"/>
+            <column id="310"/>
+            <column id="311"/>
+            <column id="312"/>
+            <column id="313"/>
+            <column id="314"/>
+            <column id="315"/>
+            <column id="316"/>
+            <column id="317"/>
+            <column id="318"/>
+            <column id="319"/>
+            <column id="320"/>
+            <column id="321"/>
+            <column id="322"/>
+            <column id="323"/>
+            <header>
+                <row id="219">
+                    <property name="backgroundColor">#FF8000</property>
+                    <property name="height">0.34in</property>
+                    <cell id="220">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="221">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="222">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="223">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">绑定车辆</text-property>
+                        </label>
+                    </cell>
+                    <cell id="224">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="225">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">绑定设备</text-property>
+                        </label>
+                    </cell>
+                    <cell id="226">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="227">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">绑定停放点</text-property>
+                        </label>
+                    </cell>
+                    <cell id="228">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="229">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">绑定完成时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="230">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="231">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">运输开始时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="232">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="233">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">运输结束时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="234">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="235">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">目的停放点</text-property>
+                        </label>
+                    </cell>
+                    <cell id="236">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="237">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">运输实际开始时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="238">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="239">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">运输到达时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="240">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="241">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">运输时长（小时）</text-property>
+                        </label>
+                    </cell>
+                    <cell id="242">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="243">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">签收时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="244">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="245">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">签收时长（小时）</text-property>
+                        </label>
+                    </cell>
+                    <cell id="246">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="247">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">签收情况</text-property>
+                        </label>
+                    </cell>
+                    <cell id="248">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="249">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">解绑时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="250">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="251">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">销售周期（天）</text-property>
+                        </label>
+                    </cell>
+                    <cell id="252">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="253">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <text-property name="text">是否库存大于90天</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="254">
+                    <property name="height">0.29in</property>
+                    <cell id="255">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="256">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd</property>
+                            </structure>
+                            <property name="resultSetColumn">report_date</property>
+                        </data>
+                    </cell>
+                    <cell id="257">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="258">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">vin</property>
+                        </data>
+                    </cell>
+                    <cell id="259">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="260">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">device_code</property>
+                        </data>
+                    </cell>
+                    <cell id="261">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="262">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">bind_point_name</property>
+                        </data>
+                    </cell>
+                    <cell id="263">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="264">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">bind_time</property>
+                        </data>
+                    </cell>
+                    <cell id="265">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="266">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">start_time</property>
+                        </data>
+                    </cell>
+                    <cell id="267">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="268">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">end_time</property>
+                        </data>
+                    </cell>
+                    <cell id="269">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="270">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">end_point_name</property>
+                        </data>
+                    </cell>
+                    <cell id="271">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="272">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Unformatted</property>
+                            </structure>
+                            <property name="resultSetColumn">actual_start_time</property>
+                        </data>
+                    </cell>
+                    <cell id="273">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="274">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">actual_end_time</property>
+                        </data>
+                    </cell>
+                    <cell id="275">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="333">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">actual_move_hour</property>
+                        </data>
+                    </cell>
+                    <cell id="277">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="278">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">transfer_time</property>
+                        </data>
+                    </cell>
+                    <cell id="279">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="332">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">actual_transfer_hour</property>
+                        </data>
+                    </cell>
+                    <cell id="281">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="282">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">busi_code</property>
+                        </data>
+                    </cell>
+                    <cell id="283">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="284">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd HH:mm:ss</property>
+                            </structure>
+                            <property name="resultSetColumn">unbind_time</property>
+                        </data>
+                    </cell>
+                    <cell id="285">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="286">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">bind_day</property>
+                        </data>
+                    </cell>
+                    <cell id="287">
+                        <property name="borderBottomColor">#C9C9C9</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#C9C9C9</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#C9C9C9</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#C9C9C9</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="288">
+                            <property name="fontFamily">"方正兰亭黑简体"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="resultSetColumn">isday</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>
