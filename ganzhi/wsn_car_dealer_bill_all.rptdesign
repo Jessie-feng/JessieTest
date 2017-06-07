@@ -464,10 +464,10 @@ var sqlString= "SELECT "
 			 + "inner join wsn_dealer_bill_device_info a4 on a4.park_point_id=a3.id "
 			 + "left join wsn_cust_account a5 on a1.id=a5.cust_id "
 			 + "where 1=1 ";
-
+/*
 if(username != "admin" &amp;&amp; username != "wsn_admin" &amp;&amp; username != "zt_admin") {
 	sqlString += " and a5.username='" + username + "'";
-}
+} */
 
 if(bankId != null) {
 	sqlString += " and a1.id=" + bankId;

@@ -664,23 +664,6 @@ where id in (5,11,20,59);]]></xml-property>
         </simple-master-page>
     </page-setup>
     <body>
-        <text id="3512">
-            <property name="backgroundColor">#FFFF80</property>
-            <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<script src="./resource/wsn/jquery-3.1.1.js"></script>
-<script src="./resource/wsn/htmlitem.js"></script>
-<script>
-var link1=document.createElement("link");
-    link1.setAttribute("rel", "stylesheet");  
-    link1.setAttribute("type", "text/css");  
-    link1.setAttribute("href", "resource/wsn/wsnsimpletable.css");  
-  
-    var heads = document.getElementsByTagName("head"); 
-    heads[0].appendChild(link1);
-
-</script>
-]]></text-property>
-        </text>
         <label id="7">
             <property name="fontSize">24pt</property>
             <property name="fontWeight">bold</property>
