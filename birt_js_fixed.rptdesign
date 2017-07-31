@@ -8,6 +8,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="周期" id="4209">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -27,13 +28,13 @@
             </list-property>
             <property name="paramType">simple</property>
             <property name="controlType">radio-button</property>
-            <property name="mustMatch">true</property>
             <property name="fixedOrder">true</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
         <scalar-parameter name="报表开始日" id="3021">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">date</property>
             <property name="distinct">true</property>
@@ -49,6 +50,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="报表结束日" id="3806">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">date</property>
             <property name="distinct">true</property>
@@ -2048,17 +2050,7 @@ date_sub(date_add(date_sub(?, interval extract(day from ?)-1 day), interval 1 mo
         <text id="3512">
             <property name="backgroundColor">#FFFF80</property>
             <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<script src="resource/jctest/jquery-3.1.1.js"></script>
-<script>
-var link1=document.createElement("link");
-    link1.setAttribute("rel", "stylesheet");  
-    link1.setAttribute("type", "text/css");  
-    link1.setAttribute("href", "resource/jctest/tab_birt.css");  
-  
-    var heads = document.getElementsByTagName("head"); 
-    heads[0].appendChild(link1);
-
-</script>]]></text-property>
+            <text-property name="content"><![CDATA[<script src="resource/jctest/jquery-3.1.1.js"></script>]]></text-property>
         </text>
         <grid id="4872">
             <property name="fontSize">10pt</property>
@@ -2342,7 +2334,7 @@ var link1=document.createElement("link");
                 </cell>
             </row>
         </grid>
-        <table id="7447">
+        <table id="7767">
             <property name="fontFamily">"微软雅黑"</property>
             <property name="borderBottomStyle">none</property>
             <property name="borderLeftStyle">none</property>
@@ -2507,38 +2499,38 @@ var link1=document.createElement("link");
             </list-property>
             <expression name="bookmark" type="javascript">"table1"</expression>
             <property name="pageBreakInterval">0</property>
-            <column id="7607">
+            <column id="7878">
                 <property name="width">1in</property>
             </column>
-            <column id="7608"/>
-            <column id="7609"/>
-            <column id="7610"/>
-            <column id="7611"/>
-            <column id="7612"/>
-            <column id="7613"/>
-            <column id="7614"/>
-            <column id="7615"/>
-            <column id="7616"/>
-            <column id="7617"/>
-            <column id="7618"/>
-            <column id="7619"/>
-            <column id="7620"/>
-            <column id="7621"/>
-            <column id="7622"/>
-            <column id="7623"/>
-            <column id="7624"/>
-            <column id="7625"/>
-            <column id="7626"/>
-            <column id="7627"/>
-            <column id="7628"/>
-            <column id="7629"/>
-            <column id="7630"/>
+            <column id="7879"/>
+            <column id="7880"/>
+            <column id="7881"/>
+            <column id="7882"/>
+            <column id="7883"/>
+            <column id="7884"/>
+            <column id="7885"/>
+            <column id="7886"/>
+            <column id="7887"/>
+            <column id="7888"/>
+            <column id="7889"/>
+            <column id="7890"/>
+            <column id="7891"/>
+            <column id="7892"/>
+            <column id="7893"/>
+            <column id="7894"/>
+            <column id="7895"/>
+            <column id="7896"/>
+            <column id="7897"/>
+            <column id="7898"/>
+            <column id="7899"/>
+            <column id="7900"/>
+            <column id="7901"/>
             <header>
-                <row id="7448">
+                <row id="7768">
                     <property name="backgroundColor">#448FB9</property>
                     <property name="fontWeight">bold</property>
                     <property name="color">#FFFFFF</property>
-                    <cell id="7449">
+                    <cell id="7769">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2553,8 +2545,59 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
+                        <label id="7903">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">"微软雅黑"</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">normal</property>
+                            <property name="color">#448FB9</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <text-property name="text">a</text-property>
+                        </label>
                     </cell>
-                    <cell id="7450">
+                    <cell id="7770">
                         <property name="colSpan">7</property>
                         <property name="rowSpan">1</property>
                         <property name="borderBottomColor">#C9C9C9</property>
@@ -2565,7 +2608,7 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7451">
+                        <label id="7771">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -2617,7 +2660,7 @@ var link1=document.createElement("link");
                             <text-property name="text">注册申请环节(按人数)</text-property>
                         </label>
                     </cell>
-                    <cell id="7452">
+                    <cell id="7772">
                         <property name="colSpan">7</property>
                         <property name="rowSpan">1</property>
                         <property name="borderBottomColor">#C9C9C9</property>
@@ -2631,7 +2674,7 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7453">
+                        <label id="7773">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -2683,7 +2726,7 @@ var link1=document.createElement("link");
                             <text-property name="text">申请送件环节(按件数)</text-property>
                         </label>
                     </cell>
-                    <cell id="7454">
+                    <cell id="7774">
                         <property name="colSpan">5</property>
                         <property name="rowSpan">1</property>
                         <property name="borderBottomColor">#C9C9C9</property>
@@ -2697,7 +2740,7 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7455">
+                        <label id="7775">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -2749,7 +2792,7 @@ var link1=document.createElement("link");
                             <text-property name="text">送件开户环节(按件数)</text-property>
                         </label>
                     </cell>
-                    <cell id="7456">
+                    <cell id="7776">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2765,7 +2808,7 @@ var link1=document.createElement("link");
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
                     </cell>
-                    <cell id="7457">
+                    <cell id="7777">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2781,7 +2824,7 @@ var link1=document.createElement("link");
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
                     </cell>
-                    <cell id="7458">
+                    <cell id="7778">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2797,7 +2840,7 @@ var link1=document.createElement("link");
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
                     </cell>
-                    <cell id="7459">
+                    <cell id="7779">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2814,12 +2857,12 @@ var link1=document.createElement("link");
                         <property name="verticalAlign">middle</property>
                     </cell>
                 </row>
-                <row id="7460">
+                <row id="7780">
                     <property name="backgroundColor">#448FB9</property>
                     <property name="fontWeight">bold</property>
                     <property name="color">#FFFFFF</property>
                     <property name="verticalAlign">middle</property>
-                    <cell id="7461">
+                    <cell id="7781">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2834,12 +2877,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7462">
+                        <label id="7782">
                             <property name="textAlign">center</property>
                             <text-property name="text">注册日期</text-property>
                         </label>
                     </cell>
-                    <cell id="7463">
+                    <cell id="7783">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2851,12 +2894,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7464">
+                        <label id="7784">
                             <property name="textAlign">center</property>
                             <text-property name="text">当期注册数</text-property>
                         </label>
                     </cell>
-                    <cell id="7465">
+                    <cell id="7785">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2871,13 +2914,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7466">
+                        <label id="7786">
                             <property name="textAlign">center</property>
                             <text-property name="text">其中&#13;
 刷量数</text-property>
                         </label>
                     </cell>
-                    <cell id="7467">
+                    <cell id="7787">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2892,13 +2935,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7468">
+                        <label id="7788">
                             <property name="textAlign">center</property>
                             <text-property name="text">其中&#13;
 实际注册数</text-property>
                         </label>
                     </cell>
-                    <cell id="7469">
+                    <cell id="7789">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2913,13 +2956,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7470">
+                        <label id="7790">
                             <property name="textAlign">center</property>
                             <text-property name="text">其中&#13;
 申请数</text-property>
                         </label>
                     </cell>
-                    <cell id="7471">
+                    <cell id="7791">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2934,13 +2977,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7472">
+                        <label id="7792">
                             <property name="textAlign">center</property>
                             <text-property name="text">其中&#13;
 开户数</text-property>
                         </label>
                     </cell>
-                    <cell id="7473">
+                    <cell id="7793">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2955,13 +2998,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7474">
+                        <label id="7794">
                             <property name="textAlign">center</property>
                             <text-property name="text">注册申请&#13;
 转化率</text-property>
                         </label>
                     </cell>
-                    <cell id="7475">
+                    <cell id="7795">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2973,13 +3016,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7476">
+                        <label id="7796">
                             <property name="textAlign">center</property>
                             <text-property name="text">注册开户&#13;
 转化率</text-property>
                         </label>
                     </cell>
-                    <cell id="7477">
+                    <cell id="7797">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -2994,12 +3037,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7478">
+                        <label id="7798">
                             <property name="textAlign">center</property>
                             <text-property name="text">当期申请数</text-property>
                         </label>
                     </cell>
-                    <cell id="7479">
+                    <cell id="7799">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3014,13 +3057,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7480">
+                        <label id="7800">
                             <property name="textAlign">center</property>
                             <text-property name="text">首次&#13;
 申请数</text-property>
                         </label>
                     </cell>
-                    <cell id="7481">
+                    <cell id="7801">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3035,13 +3078,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7482">
+                        <label id="7802">
                             <property name="textAlign">center</property>
                             <text-property name="text">重复&#13;
 申请数</text-property>
                         </label>
                     </cell>
-                    <cell id="7483">
+                    <cell id="7803">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3056,13 +3099,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7484">
+                        <label id="7804">
                             <property name="textAlign">center</property>
                             <text-property name="text">通过&#13;
 反欺诈</text-property>
                         </label>
                     </cell>
-                    <cell id="7485">
+                    <cell id="7805">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3077,13 +3120,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7486">
+                        <label id="7806">
                             <property name="textAlign">center</property>
                             <text-property name="text">审核&#13;
 通过数</text-property>
                         </label>
                     </cell>
-                    <cell id="7487">
+                    <cell id="7807">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3098,13 +3141,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7488">
+                        <label id="7808">
                             <property name="textAlign">center</property>
                             <text-property name="text">其中&#13;
 送件数</text-property>
                         </label>
                     </cell>
-                    <cell id="7489">
+                    <cell id="7809">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3116,13 +3159,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7490">
+                        <label id="7810">
                             <property name="textAlign">center</property>
                             <text-property name="text">申请送件&#13;
 转化率</text-property>
                         </label>
                     </cell>
-                    <cell id="7491">
+                    <cell id="7811">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3137,12 +3180,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7492">
+                        <label id="7812">
                             <property name="textAlign">center</property>
                             <text-property name="text">当期送件数</text-property>
                         </label>
                     </cell>
-                    <cell id="7493">
+                    <cell id="7813">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3157,13 +3200,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7494">
+                        <label id="7814">
                             <property name="textAlign">center</property>
                             <text-property name="text">规则&#13;
 通过数</text-property>
                         </label>
                     </cell>
-                    <cell id="7495">
+                    <cell id="7815">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3178,13 +3221,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7496">
+                        <label id="7816">
                             <property name="textAlign">center</property>
                             <text-property name="text">二次风控&#13;
 通过数</text-property>
                         </label>
                     </cell>
-                    <cell id="7497">
+                    <cell id="7817">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3199,13 +3242,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7498">
+                        <label id="7818">
                             <property name="textAlign">center</property>
                             <text-property name="text">单电&#13;
 通过数</text-property>
                         </label>
                     </cell>
-                    <cell id="7499">
+                    <cell id="7819">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3220,13 +3263,13 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7500">
+                        <label id="7820">
                             <property name="textAlign">center</property>
                             <text-property name="text">个电&#13;
 通过数</text-property>
                         </label>
                     </cell>
-                    <cell id="7501">
+                    <cell id="7821">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3241,12 +3284,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7502">
+                        <label id="7822">
                             <property name="textAlign">center</property>
                             <text-property name="text">当期开户</text-property>
                         </label>
                     </cell>
-                    <cell id="7503">
+                    <cell id="7823">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3261,12 +3304,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7504">
+                        <label id="7824">
                             <property name="textAlign">center</property>
                             <text-property name="text">送件开户率</text-property>
                         </label>
                     </cell>
-                    <cell id="7505">
+                    <cell id="7825">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3281,12 +3324,12 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7506">
+                        <label id="7826">
                             <property name="textAlign">center</property>
                             <text-property name="text">兴业开户率</text-property>
                         </label>
                     </cell>
-                    <cell id="7507">
+                    <cell id="7827">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3301,7 +3344,7 @@ var link1=document.createElement("link");
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <label id="7508">
+                        <label id="7828">
                             <property name="textAlign">center</property>
                             <text-property name="text">行健开户率</text-property>
                         </label>
@@ -3309,7 +3352,7 @@ var link1=document.createElement("link");
                 </row>
             </header>
             <detail>
-                <row id="7558">
+                <row id="7829">
                     <method name="onPrepare"><![CDATA[count = 0;]]></method>
                     <method name="onCreate"><![CDATA[count++;
 if(count % 2 != 0)
@@ -3317,7 +3360,7 @@ if(count % 2 != 0)
 	//style.setBackgroundColor("#D5D5D5"); //#D5D5D5 
 }]]></method>
                     <property name="height">0.3in</property>
-                    <cell id="7559">
+                    <cell id="7830">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3332,11 +3375,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7560">
+                        <data id="7831">
                             <property name="resultSetColumn">date1</property>
                         </data>
                     </cell>
-                    <cell id="7561">
+                    <cell id="7832">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3348,11 +3391,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7562">
+                        <data id="7833">
                             <property name="resultSetColumn">register</property>
                         </data>
                     </cell>
-                    <cell id="7563">
+                    <cell id="7834">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3367,11 +3410,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7564">
+                        <data id="7835">
                             <property name="resultSetColumn">fake</property>
                         </data>
                     </cell>
-                    <cell id="7565">
+                    <cell id="7836">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3386,7 +3429,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7566">
+                        <data id="7837">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -3438,7 +3481,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d1</property>
                         </data>
                     </cell>
-                    <cell id="7567">
+                    <cell id="7838">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3453,11 +3496,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7568">
+                        <data id="7839">
                             <property name="resultSetColumn">applyinregister</property>
                         </data>
                     </cell>
-                    <cell id="7569">
+                    <cell id="7840">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3472,11 +3515,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7570">
+                        <data id="7841">
                             <property name="resultSetColumn">openinregister</property>
                         </data>
                     </cell>
-                    <cell id="7571">
+                    <cell id="7842">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3491,7 +3534,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7572">
+                        <data id="7843">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -3547,7 +3590,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d2</property>
                         </data>
                     </cell>
-                    <cell id="7573">
+                    <cell id="7844">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3559,7 +3602,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7574">
+                        <data id="7845">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -3615,7 +3658,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d3</property>
                         </data>
                     </cell>
-                    <cell id="7575">
+                    <cell id="7846">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3630,11 +3673,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7576">
+                        <data id="7847">
                             <property name="resultSetColumn">apply</property>
                         </data>
                     </cell>
-                    <cell id="7577">
+                    <cell id="7848">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3649,11 +3692,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7578">
+                        <data id="7849">
                             <property name="resultSetColumn">applynew</property>
                         </data>
                     </cell>
-                    <cell id="7579">
+                    <cell id="7850">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3668,11 +3711,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7580">
+                        <data id="7851">
                             <property name="resultSetColumn">applyold</property>
                         </data>
                     </cell>
-                    <cell id="7581">
+                    <cell id="7852">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3687,11 +3730,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7582">
+                        <data id="7853">
                             <property name="resultSetColumn">antifraudinapply</property>
                         </data>
                     </cell>
-                    <cell id="7583">
+                    <cell id="7854">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3706,11 +3749,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7584">
+                        <data id="7855">
                             <property name="resultSetColumn">passinapply</property>
                         </data>
                     </cell>
-                    <cell id="7585">
+                    <cell id="7856">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3725,11 +3768,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7586">
+                        <data id="7857">
                             <property name="resultSetColumn">sendinapply</property>
                         </data>
                     </cell>
-                    <cell id="7587">
+                    <cell id="7858">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3741,7 +3784,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7588">
+                        <data id="7859">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -3797,7 +3840,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d4</property>
                         </data>
                     </cell>
-                    <cell id="7589">
+                    <cell id="7860">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3812,11 +3855,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7590">
+                        <data id="7861">
                             <property name="resultSetColumn">send</property>
                         </data>
                     </cell>
-                    <cell id="7591">
+                    <cell id="7862">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3831,11 +3874,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7592">
+                        <data id="7863">
                             <property name="resultSetColumn">rulepass</property>
                         </data>
                     </cell>
-                    <cell id="7593">
+                    <cell id="7864">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3850,11 +3893,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7594">
+                        <data id="7865">
                             <property name="resultSetColumn">tongdunpass</property>
                         </data>
                     </cell>
-                    <cell id="7595">
+                    <cell id="7866">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3869,11 +3912,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7596">
+                        <data id="7867">
                             <property name="resultSetColumn">comtelpass</property>
                         </data>
                     </cell>
-                    <cell id="7597">
+                    <cell id="7868">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3888,11 +3931,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7598">
+                        <data id="7869">
                             <property name="resultSetColumn">pertelpass</property>
                         </data>
                     </cell>
-                    <cell id="7599">
+                    <cell id="7870">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3907,11 +3950,11 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7600">
+                        <data id="7871">
                             <property name="resultSetColumn">open</property>
                         </data>
                     </cell>
-                    <cell id="7601">
+                    <cell id="7872">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3926,7 +3969,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7602">
+                        <data id="7873">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -3982,7 +4025,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d5</property>
                         </data>
                     </cell>
-                    <cell id="7603">
+                    <cell id="7874">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -3997,7 +4040,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7604">
+                        <data id="7875">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -4053,7 +4096,7 @@ if(count % 2 != 0)
                             <property name="resultSetColumn">d6</property>
                         </data>
                     </cell>
-                    <cell id="7605">
+                    <cell id="7876">
                         <property name="borderBottomColor">#C9C9C9</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
@@ -4068,7 +4111,7 @@ if(count % 2 != 0)
                         <property name="borderTopWidth">thin</property>
                         <property name="textAlign">center</property>
                         <property name="verticalAlign">middle</property>
-                        <data id="7606">
+                        <data id="7877">
                             <property name="backgroundAttachment">scroll</property>
                             <property name="backgroundPositionX">0%</property>
                             <property name="backgroundPositionY">0%</property>
@@ -4127,62 +4170,233 @@ if(count % 2 != 0)
                 </row>
             </detail>
         </table>
-        <text id="3519">
-            <property name="fontSize">10pt</property>
-            <property name="marginLeft">0pt</property>
-            <property name="display">none</property>
+        <text id="3547">
+            <property name="marginTop">0pt</property>
+            <property name="pageBreakAfter">auto</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<script>  
-	(function($){
-		$(document).ready(function(){
-			$("#table1 tr:gt(0)").hover(
-				function(){$(this).addClass("hover")},
-				function () { $(this).removeClass("hover") }
-			);	
-		});		
-				
-	})(jQuery);	
-</script>
-
-
-
-]]></text-property>
+            <text-property name="content"><![CDATA[<div id="birtdiv"></div>]]></text-property>
         </text>
         <text id="7631">
             <property name="fontSize">10pt</property>
             <property name="marginLeft">0pt</property>
             <property name="display">none</property>
             <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[
+            <text-property name="content"><![CDATA[<script type="text/javascript">
+(function($){
+		$(document).ready(function(){
+ /*
+	var w = document.getElementById("Document").style.width;		
+	var h = document.getElementById("Document").style.height; 		
+	var tp = document.getElementById("documentView").style.paddingTop;		
+	h = (parseInt(h) - parseInt(tp) -30) +'' + 'px';   
+	w = (parseInt(w) - 20) +'' + 'px'; */
+	
+	var w = $(window).width();   
+	var h = $(window).height();
+	var tp = document.getElementById("documentView").style.paddingTop;		
+	
+	w = (parseInt(w) - $('#sidebar').outerWidth() -30) +'' + 'px';
+	h = (parseInt(h) - $('#navbar').outerHeight() - $('#breadcrumbs').outerHeight() - $('#toolbar').outerHeight() - parseInt(tp) -60) +'' + 'px';
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		var t1 = $('#table1');
-		
-        var s1 = {
-      		
-         };
-		 
-		 var s2 = { 
-        
-        
-		'height': '200px',		
-         };
-    
-        $("#table1").css(s1);	
-		
-		var $x = $("#table1 tbody tr:lt(2)").remove();
-		var thead = $('<thead></thead>');
-		$x.appendTo(thead);		
-	    $("#table1").prepend(thead);		
+	lockHeadColumn('table1', w, h,2,1);
 	
-		$("#table1").css(s1);
-		$("#table1 tbody").css(s2);
-		
-		
-	});	
+	//lockHeadColumn('table1', '1580px', '700px',2,1);
 	
-</script>]]></text-property>
+	function lockHeadColumn(sourceTable, divWidth, divHeight,lockrows,lockcolumns){		
+		//var $ = jQuery;	
+		var outWrap =document.getElementById('birtdiv');	//最外层的div		
+		var cssoutWrap = {
+			'width': divWidth,
+			'max-height': divHeight,
+			'overflow':'auto',
+            'position':'relative'			
+		};
+		$(outWrap).css(cssoutWrap);
+		
+		var stable = document.getElementById(sourceTable);  //原始表
+		$(outWrap).append($('#'+sourceTable));             // 把原始表加到 outWrap			
+		
+		var rows = stable.rows;	
+		var cols = rows[0].cells;
+		var rowLength= rows.length;  //算原始表的行数
+		var colLength= cols.length;  //算原始表的列数	
+
+		createHeadTable();  
+		createLeftTable(); 		
+		createCornerTable(); 
+		//$('#table1').css({'visibility':'hidden'});
+
+		$(outWrap).scroll(function(){
+			$('#'+sourceTable +'_left').css({'left': $(outWrap).scrollLeft() +'px'});
+			$('#'+sourceTable +'_corner').css({'left': $(outWrap).scrollLeft() +'px'});
+			$('#'+sourceTable +'_corner').css({'top': $(outWrap).scrollTop() +'px'});;
+			$('#'+sourceTable +'_Head').css({'top': $(outWrap).scrollTop() +'px'});					
+		});
+		
+		//创建head table
+		function createHeadTable(){	
+			var tableHead = document.createElement('table');
+			$(tableHead).attr('id',sourceTable +'_Head');
+			var tbody = $('<tbody></tbody>');			
+			for(var i=0; i<lockrows; i++){				
+				var tr = $('<tr></tr>');	
+				for(j=0; j<rows[i].cells.length; j++){
+					var t= $(rows[i].cells[j]);
+					var c = t.children();
+					var t2 = t.clone(true);
+					var c2 = t2.children();
+					var s1 = {
+						'height':c.height(),
+						'width':c.width(),
+						'padding': c.css('padding-top') + ' ' + c.css('padding-right') + ' ' + c.css('padding-bottom') + ' ' + c.css('padding-left'),
+						'margin': c.css('margin-top') + ' ' + c.css('margin-right') + ' ' + c.css('margin-bottom') + ' ' + c.css('margin-left'),
+						'color': c.css('color'),
+						'backgroundColor':c.css('backgroundColor'),
+					}
+					var s2 = {
+						'height':t.height()+2,
+						'width':t.width(),
+						'padding': t.css('padding-top') + ' ' + t.css('padding-right') + ' ' + t.css('padding-bottom') + ' ' + t.css('padding-left'),
+						'margin': t.css('margin-top') + ' ' + t.css('margin-right') + ' ' + t.css('margin-bottom') + ' ' + t.css('margin-left'),
+						'color': t.css('color'),
+						'backgroundColor':t.css('backgroundColor'),
+					}
+					var s3 = {
+						'backgroundColor':t.parent().css('backgroundColor'),
+					}
+				    $(c2).css(s1);
+				    $(t2).css(s2);
+					tr.append(t2);
+					tr.css(s3);				
+				}								
+				tbody.append(tr);
+			}
+			$(tableHead).append(tbody);
+			var cssHead = {
+				'position': 'absolute',
+				'overflow':'hidden',
+				'zIndex':'10',
+				'top': '0px',
+				'left':'0px',
+				'border-collapse':'collapse',				
+			};			
+			$(tableHead).css(cssHead);	
+			$(outWrap).append($(tableHead));
+		};		
+		
+		
+	   //创建左边表格 
+		function createLeftTable(){ 
+			var tableLeft = document.createElement('table');    
+			$(tableLeft).attr('id',sourceTable +'_left');
+			var tbody = $('<tbody></tbody>');
+			for(var i=0; i<rowLength; i++){    
+				var tr = $('<tr></tr>');	
+				for(j=0; j<lockcolumns; j++){
+					var t= $(rows[i].cells[j]);
+					var c = t.children();
+					var t2 = t.clone(true);
+					var c2 = t2.children();
+					var s1 = {
+						'height':c.height(),
+						'width':c.width(),
+						'padding': c.css('padding-top') + ' ' + c.css('padding-right') + ' ' + c.css('padding-bottom') + ' ' + c.css('padding-left'),
+						'margin': c.css('margin-top') + ' ' + c.css('margin-right') + ' ' + c.css('margin-bottom') + ' ' + c.css('margin-left'),
+						'color': c.css('color'),
+						'backgroundColor':c.css('backgroundColor'),
+					}
+					/*var a = t.height();
+					var b = t.innerHeight();
+					var c = t.outerHeight();
+					var d = t.outerHeight(true);*/
+					var s2 = {
+						'height':t.height()+2,
+						'width':t.width(),
+						'padding': t.css('padding-top') + ' ' + t.css('padding-right') + ' ' + t.css('padding-bottom') + ' ' + t.css('padding-left'),
+						'margin': t.css('margin-top') + ' ' + t.css('margin-right') + ' ' + t.css('margin-bottom') + ' ' + t.css('margin-left'),
+						'color': t.css('color'),
+						'backgroundColor':t.css('backgroundColor'),
+					}
+					var s3 = {
+						'backgroundColor':t.parent().css('backgroundColor'),
+					}
+					
+				    $(c2).css(s1);
+				    $(t2).css(s2);
+					tr.append(t2);
+					tr.css(s3);		
+
+				}								
+				tbody.append(tr);
+			}			
+			$(tableLeft).append(tbody);
+			var cssLeft = {
+				'position': 'absolute',
+				'left': '0px',
+				'top': '0px',
+				'border-collapse':'collapse',
+				'backgroundColor':'white',
+			}
+			$(tableLeft).css(cssLeft);				
+			$(outWrap).append($(tableLeft));
+		};
+	
+		//创建左上角的table
+		function createCornerTable(){
+				var tableCorner = document.createElement('table');
+				$(tableCorner).attr('id',sourceTable +'_corner');
+				var tbody = $('<tbody></tbody>');
+				for(var i=0; i<lockrows; i++){
+					var tr = $('<tr></tr>');
+					for(j=0; j<lockcolumns; j++){
+						var t= $(rows[i].cells[j]);
+						var c = t.children();
+						var t2 = t.clone(true);
+						var c2 = t2.children();
+						var s1 = {
+							'height':c.height(),
+							'width':c.width(),
+							'padding': c.css('padding-top') + ' ' + c.css('padding-right') + ' ' + c.css('padding-bottom') + ' ' + c.css('padding-left'),
+							'margin': c.css('margin-top') + ' ' + c.css('margin-right') + ' ' + c.css('margin-bottom') + ' ' + c.css('margin-left'),
+							'color': c.css('color'),
+							'backgroundColor':c.css('backgroundColor'),
+						}
+						var s2 = {
+							'height':t.height()+2,
+							'width':t.width(),
+							'padding': t.css('padding-top') + ' ' + t.css('padding-right') + ' ' + t.css('padding-bottom') + ' ' + t.css('padding-left'),
+							'margin': t.css('margin-top') + ' ' + t.css('margin-right') + ' ' + t.css('margin-bottom') + ' ' + t.css('margin-left'),
+							'color': t.css('color'),
+							'backgroundColor':t.css('backgroundColor'),
+						}
+						var s3 = {
+							'backgroundColor':t.parent().css('backgroundColor'),
+						}
+						$(c2).css(s1);
+						$(t2).css(s2);
+						tr.append(t2);
+						tr.css(s3);		
+						}								
+						tbody.append(tr);
+				}
+				$(tableCorner).append(tbody);
+				var cssCorner = {
+					'position': 'absolute',
+					'left': '0px',
+					'top': '0px',
+				//	'border': '1px solid',
+					'zIndex' : '30',
+					'border-collapse':'collapse'
+				}
+				$(tableCorner).css(cssCorner);		
+				$(outWrap).append($(tableCorner));
+		};          
+	}	
+		});			
+})(jQuery);		
+</script>
+]]></text-property>
         </text>
     </body>
 </report>
